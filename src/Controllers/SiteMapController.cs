@@ -83,7 +83,7 @@ namespace DancingGoat.Controllers
 
             var languagePaths = await contentQueryExecutor.GetMappedWebPageResult<IWebPageFieldsSource>(builder, options, HttpContext.RequestAborted);
 
-            return BuildSitemap(languagePaths, HttpContext.Request);
+            return BuildSitemap(languagePaths);
         }
 
 
