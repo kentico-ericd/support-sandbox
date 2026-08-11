@@ -10,7 +10,6 @@ on:
         type: choice
         options:
           - qa
-          - uat
           - prod
       archive_package:
         description: "Archive deployment package as artifact"
