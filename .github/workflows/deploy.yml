@@ -66,7 +66,7 @@ jobs:
           $response = Invoke-RestMethod `
             -Uri https://xperience-portal.com/api/deployment/upload/${{ secrets.XPERIENCE_PORTAL_PROJECT_GUID }}/${{ inputs.environment }} `
             -Method Post `
-            -InFile './data/DeploymentPackage.zip' `
+            -InFile './DeploymentPackage.zip' `
             -ContentType "application/zip" `
             -Headers $headers
 
@@ -78,5 +78,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: deployment-package-${{ inputs.environment }}-${{ github.run_number }}
-          path: ./data/DeploymentPackage.zip
+          path: ./DeploymentPackage.zip
           retention-days: 30
+          compression-level: 0 # Already compressed

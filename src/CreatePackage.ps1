@@ -6,7 +6,7 @@
 param (
     # Output path for exported deployment package.
     [Parameter(Mandatory = $false)]
-    [string]$OutputPackagePath = "../data/DeploymentPackage.zip",
+    [string]$OutputPackagePath = "../DeploymentPackage.zip",
 
     # The name of the main web application assembly used as the starting point by the Xperience Cloud.
     [Parameter(Mandatory = $false)]
