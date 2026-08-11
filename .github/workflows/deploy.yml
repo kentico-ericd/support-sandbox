@@ -1,0 +1,85 @@
+name: Deploy to SaaS
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment for deployment"
+        required: false
+        default: "qa"
+        type: choice
+        options:
+          - qa
+          - uat
+          - prod
+      archive_package:
+        description: "Archive deployment package as artifact"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  createDeploymentPackage:
+    name: Create SaaS Deployment Package
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+
+    env:
+      ASPNETCORE_ENVIRONMENT: CI
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_NOLOGO: 1
+      PROJECT_NAME: Sandbox
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: global.json
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build Solution
+        run: |
+          dotnet build `
+            --configuration Release `
+            --no-restore
+
+      - name: Generate deployment package
+        working-directory: "./src"
+        run: |
+          Write-Output "Creating deployment package..."
+          ./CreatePackage.ps1
+          Write-Output "✓ Deployment package created"
+          "## 📦 Deployment Package Created" >> $env:GITHUB_STEP_SUMMARY
+
+      - name: Upload deployment package to ${{ inputs.environment }}
+        run: |
+          Write-Output "Uploading deployment package to ${{ inputs.environment }}..."
+
+          $headers = @{ Authorization = "Bearer ${{ secrets.XPERIENCE_PORTAL_DEPLOYMENT_PAT }}" }
+          $response = Invoke-RestMethod `
+            -Uri https://xperience-portal.com/api/deployment/upload/${{ secrets.XPERIENCE_PORTAL_PROJECT_GUID }}/${{ inputs.environment }} `
+            -Method Post `
+            -InFile './data/DeploymentPackage.zip' `
+            -ContentType "application/zip" `
+            -Headers $headers
+
+          Write-Output "✓ Package uploaded successfully to ${{ inputs.environment }}"
+          "## ✅ Deployed to ${{ inputs.environment }}" >> $env:GITHUB_STEP_SUMMARY
+
+      - name: Archive deployment package
+        if: ${{ inputs.archive_package }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-package-${{ inputs.environment }}-${{ github.run_number }}
+          path: ./data/DeploymentPackage.zip
+          retention-days: 30
+          compression-level: 0 # Already compressed
