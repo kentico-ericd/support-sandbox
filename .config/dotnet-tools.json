@@ -4,9 +4,11 @@
   "tools": {
     "azuresigntool": {
       "version": "4.0.1",
-      "commands": [
-        "azuresigntool"
-      ]
+      "commands": ["azuresigntool"]
+    },
+    "kentico.xperience.dbmanager": {
+      "version": "31.7.2",
+      "commands": ["kentico-xperience-dbmanager"]
     }
   }
 }
