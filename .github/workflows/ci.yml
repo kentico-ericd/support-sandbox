@@ -30,8 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dotnet restore `
-            --locked-mode
+          dotnet restore
 
       - name: Build Solution
         run: |
