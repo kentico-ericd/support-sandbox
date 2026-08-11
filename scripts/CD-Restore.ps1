@@ -1,10 +1,10 @@
 $webProjectDir = Resolve-Path("../src")
-$cdRepoDir = Resolve-Path(Join-Path $webProjectDir "CDRepository")
-$command = "dotnet run " + `
-    "--no-build " + `
-    "--no-restore " + `
-    "--project $webProjectDir " + `
-    "-- --kxp-cd-restore " + `
-    "--repository-path `"$cdRepoDir`" "
+$cdRepoDir = Resolve-Path(Join-Path $webProjectDir "`$CDRepository")
 
-Invoke-Expression -Command $command
+& dotnet run `
+    --no-build `
+    --no-restore `
+    --project $webProjectDir `
+    -- `
+    --kxp-cd-restore `
+    --repository-path $cdRepoDir

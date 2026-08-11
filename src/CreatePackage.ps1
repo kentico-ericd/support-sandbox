@@ -26,7 +26,7 @@ $ErrorActionPreference = "Stop"
 
 $OutputFolderPath = "./bin/CloudDeployment/"
 $MetadataFilePath = Join-Path $OutputFolderPath "cloud-metadata.json"
-$CDRepositoryFolderPath = "./`CDRepository"
+$CDRepositoryFolderPath = "./`$CDRepository"
 $StorageAssetsFolderName = "`$StorageAssets"
 $BuildNumber = (Get-Date).ToUniversalTime().ToString("yyyyMMddHHmm")
 
