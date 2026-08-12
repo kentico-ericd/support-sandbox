@@ -56,7 +56,7 @@ if (-not (Test-Path $LocalCDRepositoryPath) -or (@(Get-ChildItem -Path $LocalCDR
 }
 
 # Copy content of the CD repository to the output folder
-Copy-Item -Force -Recurse "$LocalCDRepositoryPath/*" -Destination $OutputCDRepositoryPath
+Copy-Item -Force -Recurse "$LocalCDRepositoryPath" -Destination $OutputCDRepositoryPath
 
 # Get storage assets paths
 $LocalStorageAssetsPath = Join-Path (Resolve-Path "../src") $StorageAssetsFolderName

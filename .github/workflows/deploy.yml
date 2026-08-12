@@ -44,12 +44,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
-      - name: Build Solution
-        run: |
-          dotnet build `
-            --configuration Release `
-            --no-restore
-
+        # Skip build step as the publish command in deployment script already builds
       - name: Generate deployment package
         working-directory: "./scripts"
         run: |
