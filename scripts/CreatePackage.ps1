@@ -24,9 +24,9 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
-$OutputFolderPath = "./bin/CloudDeployment/"
+$OutputFolderPath = "../src/bin/CloudDeployment/"
 $MetadataFilePath = Join-Path $OutputFolderPath "cloud-metadata.json"
-$CDRepositoryFolderPath = "./`$CDRepository"
+$CDRepositoryFolderPath = "../src/`$CDRepository"
 $StorageAssetsFolderName = "`$StorageAssets"
 $BuildNumber = (Get-Date).ToUniversalTime().ToString("yyyyMMddHHmm")
 
@@ -34,7 +34,7 @@ $BuildNumber = (Get-Date).ToUniversalTime().ToString("yyyyMMddHHmm")
 Remove-Item -Recurse -Force $OutputFolderPath -ErrorAction SilentlyContinue
 
 # Publish the application in the 'Release' mode
-$PublishCommand = "dotnet publish --nologo -c Release -o $OutputFolderPath"
+$PublishCommand = "dotnet publish ../src --nologo -c Release -o $OutputFolderPath"
 
 if (!$KeepProductVersion) {
     $PublishCommand += " --version-suffix $BuildNumber"
@@ -59,7 +59,7 @@ if (-not (Test-Path $LocalCDRepositoryPath) -or (@(Get-ChildItem -Path $LocalCDR
 Copy-Item -Force -Recurse "$LocalCDRepositoryPath/*" -Destination $OutputCDRepositoryPath
 
 # Get storage assets paths
-$LocalStorageAssetsPath = Join-Path (Resolve-Path .) $StorageAssetsFolderName
+$LocalStorageAssetsPath = Join-Path (Resolve-Path "../src") $StorageAssetsFolderName
 $OutputStorageAssetsPath = Join-Path $OutputFolderPath $StorageAssetsFolderName
 
 if (Test-Path $LocalStorageAssetsPath) {

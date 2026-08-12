@@ -51,7 +51,7 @@ jobs:
             --no-restore
 
       - name: Generate deployment package
-        working-directory: "./src"
+        working-directory: "./scripts"
         run: |
           Write-Output "Creating deployment package..."
           ./CreatePackage.ps1
