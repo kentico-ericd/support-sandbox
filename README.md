@@ -32,3 +32,13 @@ If you need to test something in the SaaS environment, first download this proje
    ```
 
 1. Run the application and log in with the credentials stored in Secret Server
+
+## Resetting the SaaS environment
+
+After deploying changes to SaaS and testing, it is a good idea to "reset" the project to its default state. You can do so easily with the click of a button:
+
+![Reset SaaS deployment](/images/reset.png)
+
+1. Go to **Actions**
+1. Click the "Deploy to SaaS" action
+1. Click the "Run workflow" button and choose the environment to deploy to
