@@ -35,7 +35,7 @@ If you need to test something in the SaaS environment, first download this proje
 
 ## Resetting the SaaS environment
 
-After deploying changes to SaaS and testing, it is a good idea to "reset" the project to its default state. You can do so easily with the click of a button:
+After deploying changes to SaaS and testing, it is a good idea to "reset" the project to its default state. This can also be useful if you just need to test that deployments are currently working successfully or if you can reproduce a deployment issue. You can do so easily with the click of a button:
 
 ![Reset SaaS deployment](/images/reset.png)
 
