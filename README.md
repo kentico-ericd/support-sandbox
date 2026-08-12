@@ -11,7 +11,7 @@ This project is the sample Dancing Goat website which can be deployed to the Sup
 
 ## Running the sandbox locally
 
-If you need to test something in the SaaS environment, first download this project locally, make your changes, and deploy it to the sandbox environment.
+If you need to test something in the SaaS environment, first download this project locally, make your changes, and deploy it to the sandbox environment. This repository reflects the state of the deployed SaaS project (unless someone is already testing), so there should be no deployment issues after cloning this repository.
 
 1. **Clone** the repository or download the ZIP file
 
