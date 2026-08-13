@@ -33,6 +33,26 @@ If you need to test something in the SaaS environment, first download this proje
 
 1. Run the application and log in with the credentials stored in Secret Server
 
+## Deploying to SaaS
+
+After [cloning](#running-the-sandbox-locally) the project and making changes for testing purposes, you should deploy it to the **QA** environment. Typically, you will not need to deploy to PROD unless you are specifically testing something in that environment.
+
+1. Run the CD store script, e.g. in Powershell or by right-clicking the file > **Run with PowerShell**
+
+   ```ps
+   C:\Users\youruser\downloads\support-sandbox\scripts> .\CD-Store.ps1
+   ```
+
+1. Generate the deployment package via script, e.g. in Powershell or by right-clicking the file > **Run with PowerShell**
+
+   ```ps
+   C:\Users\youruser\downloads\support-sandbox\scripts> .\CreatePackage.ps1
+   ```
+
+1. Upload the package to the Portal using the [standard process](https://docs.kentico.com/documentation/developers-and-admins/deployment/deploy-to-the-saas-environment#upload-a-deployment-package-to-your-xperience-portal-project)
+
+When you are done testing in the SaaS environment, it is a good idea to [reset](#resetting-the-saas-environment) the environment you deployed to.
+
 ## Resetting the SaaS environment
 
 After deploying changes to SaaS and testing, it is a good idea to "reset" the project to its default state. This can also be useful if you just need to test that deployments are currently working successfully or if you can reproduce a deployment issue. You can do so easily with the click of a button:
