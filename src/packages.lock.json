@@ -58,6 +58,16 @@
           "SkiaSharp.NativeAssets.Linux.NoDependencies": "4.150.0"
         }
       },
+      "Kentico.Xperience.Lucene": {
+        "type": "Direct",
+        "requested": "[15.0.5, )",
+        "resolved": "15.0.5",
+        "contentHash": "ZcVNu4RqjEGrk52vBmjtHYoyWHCaZRSHugSDjpUdVAcNKPCU85XF905sBeKXSnsKoSm0af0Rt0/UClyG6C33Ew==",
+        "dependencies": {
+          "Kentico.Xperience.Lucene.Admin": "15.0.5",
+          "Kentico.Xperience.Lucene.Core": "15.0.5"
+        }
+      },
       "Kentico.Xperience.Mjml": {
         "type": "Direct",
         "requested": "[31.7.2, )",
@@ -579,6 +589,11 @@
           "AngleSharp.Css": "1.0.0"
         }
       },
+      "J2N": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "Vooz1wbnnqWuS+u93tADXK5Owxo8vLJhSrZ9Ac+KpgDF3GJq9TybXXTF1TFcWILgEtRThc8AOBENEzB0TQH1JA=="
+      },
       "Kentico.Aira.Client": {
         "type": "Transitive",
         "resolved": "6.1.0",
@@ -605,6 +620,26 @@
           "System.IO.Hashing": "10.0.9"
         }
       },
+      "Kentico.Xperience.Lucene.Admin": {
+        "type": "Transitive",
+        "resolved": "15.0.5",
+        "contentHash": "HQ6BUokrpYprXFBNSOBdVlYXY8gACdQ397yIfkwTyLQ51XQCTT/ilabRgImMKJO6K3xKpf6Pt0VUndYP/iPk/g==",
+        "dependencies": {
+          "Kentico.Xperience.Admin": "31.0.0",
+          "Kentico.Xperience.Lucene.Core": "15.0.5"
+        }
+      },
+      "Kentico.Xperience.Lucene.Core": {
+        "type": "Transitive",
+        "resolved": "15.0.5",
+        "contentHash": "veRCGALDjFWIHzFTha6sz2hJprfLAtcGRYRVMg6oi0myZs2AZc9fTNJ4/f+bqTRzBLC3EAdDumePtADIFcWG+w==",
+        "dependencies": {
+          "Kentico.Xperience.Core": "31.0.0",
+          "Lucene.Net": "4.8.0-beta00017",
+          "Lucene.Net.Analysis.Common": "4.8.0-beta00017",
+          "Lucene.Net.Facet": "4.8.0-beta00017"
+        }
+      },
       "Kentico.Xperience.SendGrid": {
         "type": "Transitive",
         "resolved": "31.7.2",
@@ -613,6 +648,56 @@
           "Kentico.Xperience.Core": "31.7.2",
           "SendGrid": "9.29.3",
           "SendGrid.Extensions.DependencyInjection": "1.0.1"
+        }
+      },
+      "Lucene.Net": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "7LLWS9nNwx01AyE/KXMh+qdAlzDkRANE8407AO/wEmLL1InzVKFwfsRdRmwg4ILOMFui4xZ1Y54eqvzo3Tf9Vw==",
+        "dependencies": {
+          "J2N": "[2.1.0, 3.0.0)"
+        }
+      },
+      "Lucene.Net.Analysis.Common": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "rPpmww/HgwEwhvfvZgdWITxFsWRoCEpP3+WQBFgbGxTn4eLDr3U/oFoe8KS+8jUNAl2+5atErDrW5JOcFG+gcQ==",
+        "dependencies": {
+          "Lucene.Net": "4.8.0-beta00017"
+        }
+      },
+      "Lucene.Net.Facet": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "LVxGwgRAVq9XdwvNfgCB8OH+ou40I0E1NYN53muPjQK5oUY+HpkgkFUhTFSHdajWWj7xFI1f+UFB23iweoVf2w==",
+        "dependencies": {
+          "Lucene.Net.Join": "4.8.0-beta00017",
+          "Lucene.Net.Queries": "4.8.0-beta00017"
+        }
+      },
+      "Lucene.Net.Grouping": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "nzMGvz0b1cedS8KKOlglJQJpyz8fT0ojgXFkgSkLLhwPNbMPwVoBsR7RlZs1FrF60Oz369O3Pm1a+MIr52KcLQ==",
+        "dependencies": {
+          "Lucene.Net": "4.8.0-beta00017",
+          "Lucene.Net.Queries": "4.8.0-beta00017"
+        }
+      },
+      "Lucene.Net.Join": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "WcJl4O6t3iXiXwXHnhmbVCO7C6ilPxabBCsdW/auQN0lrDpbVIcHorCxwd199fGBEQnk7wbl5pPnk8nw/VK4eQ==",
+        "dependencies": {
+          "Lucene.Net.Grouping": "4.8.0-beta00017"
+        }
+      },
+      "Lucene.Net.Queries": {
+        "type": "Transitive",
+        "resolved": "4.8.0-beta00017",
+        "contentHash": "RVpZCfa/7pgvytFw64zLqinvZPQt4TojvcFghdAA5vhnpSs5GTbtciPIxFH3wwH3f2dYJywiqYKo1h3JBCXRBA==",
+        "dependencies": {
+          "Lucene.Net": "4.8.0-beta00017"
         }
       },
       "Magick.NET-Q8-AnyCPU": {

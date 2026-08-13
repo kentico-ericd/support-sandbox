@@ -1,6 +1,8 @@
 ﻿using CMS.Base;
+using CMS.IO;
 
 using DancingGoat;
+using DancingGoat.Customizations.Search;
 using DancingGoat.EmailComponents;
 using DancingGoat.Helpers.Generators;
 using DancingGoat.Models;
@@ -14,6 +16,7 @@ using Kentico.OnlineMarketing.Web.Mvc;
 using Kentico.PageBuilder.Web.Mvc;
 using Kentico.Web.Mvc;
 using Kentico.Xperience.Cloud;
+using Kentico.Xperience.Lucene.Core.Store;
 using Kentico.Xperience.Mjml;
 
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +31,13 @@ using XperienceCommunity.SqlBrowser;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSqlBrowser(o => o.UseSafeQuerySelect = false);
+builder.Services.AddKenticoLucene(builder => builder
+    .RegisterStrategy<ArticleIndexingStrategy>(nameof(ArticleIndexingStrategy)));
+
+// Store Lucene files in blob
+builder.Services.AddStoragePathRegistration(
+    $"~/{LuceneStorageConstants.LUCENE_INDEX_PATH}/",
+    PathType.SharedPersistent);
 
 builder.Services.AddXperienceCloudStoragePathMapping();
 builder.Services.AddXperienceCloudApplicationInsights(builder.Configuration);

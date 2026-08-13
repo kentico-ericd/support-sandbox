@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cms.class>
+  <ClassDisplayName>Lucene Index Assembly Version Item</ClassDisplayName>
+  <ClassFormDefinition>
+    <form>
+      <field column="LuceneIndexAssemblyVersionItemID" columntype="integer" enabled="true" guid="379da407-794f-4c5b-9f12-fec0baaffeb3" isPK="true" />
+      <field column="LuceneIndexAssemblyVersionItemGuid" columnprecision="0" columntype="guid" enabled="true" guid="727b10b2-0a08-4f98-a162-e098cde5821d" visible="true" />
+      <field column="LuceneIndexAssemblyVersionItemAssemblyVersion" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="8754c85e-7249-4313-97a3-8bfde552b39a" visible="true" />
+      <field column="LuceneIndexAssemblyVersionItemIndexItemId" columnprecision="0" columntype="integer" enabled="true" guid="1f6bad5e-18d5-489f-ae28-765a00224ad2" refobjtype="kenticolucene.luceneindexitem" reftype="Required" visible="true" />
+    </form>
+  </ClassFormDefinition>
+  <ClassGUID>399a4a5b-ec86-4e5a-881a-fdef7a5c8663</ClassGUID>
+  <ClassHasUnmanagedDbSchema>False</ClassHasUnmanagedDbSchema>
+  <ClassName>KenticoLucene.LuceneIndexAssemblyVersionItem</ClassName>
+  <ClassResourceID>
+    <CodeName>CMS.Integration.Lucene</CodeName>
+    <GUID>7b9d86f1-aaec-4865-8848-6ee396f1972e</GUID>
+    <ObjectType>cms.resource</ObjectType>
+  </ClassResourceID>
+  <ClassTableName>KenticoLucene_LuceneIndexAssemblyVersionItem</ClassTableName>
+  <ClassType>Other</ClassType>
+</cms.class>
