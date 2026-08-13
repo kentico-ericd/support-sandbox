@@ -32,6 +32,7 @@
     <PackageReference Include="kentico.xperience.mjml" />
     <PackageReference Include="kentico.xperience.webapp" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
+    <PackageReference Include="XperienceCommunity.SqlBrowser" />
   </ItemGroup>
 
   <ItemGroup>

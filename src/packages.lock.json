@@ -110,6 +110,19 @@
         "resolved": "10.20.0.135146",
         "contentHash": "Dx+sh/lhhJrG4Sr5W+bCDr/JKhY1Op6UaIoG5UrDVIyryC7rZtqO4Q4adzvm3IqAhFGHY7oYuaSjtR46hIv8qQ=="
       },
+      "XperienceCommunity.SqlBrowser": {
+        "type": "Direct",
+        "requested": "[5.0.0, )",
+        "resolved": "5.0.0",
+        "contentHash": "+5xclNQMGPONKgWSxOx9xI2164FgiztRxc5+z05w4p1A96FYshjqWowFLRAei9mD5lBFPbvgeM7tnmF4GJDnWQ==",
+        "dependencies": {
+          "CsvHelper": "33.0.1",
+          "Kentico.Xperience.Admin": "30.11.2",
+          "Kentico.Xperience.WebApp": "30.11.2",
+          "Microsoft.SqlServer.TransactSql.ScriptDom": "170.53.0",
+          "NPOI": "2.7.1"
+        }
+      },
       "AngleSharp": {
         "type": "Transitive",
         "resolved": "1.6.0",
@@ -213,6 +226,21 @@
         "type": "Transitive",
         "resolved": "2.9.1",
         "contentHash": "OE0sl1/sQ37bjVsPKKtwQlWDgqaxWgtme3xZz7JssWUzg5JpMIyHgCTY9MVMxOg48fJ1AgGT3tgdH5m/kQ5xhA=="
+      },
+      "CsvHelper": {
+        "type": "Transitive",
+        "resolved": "33.0.1",
+        "contentHash": "fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ=="
+      },
+      "Enums.NET": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OUGCd5L8zHZ61GAf436G0gf/H6yrSUkEpV5vm2CbCUuz9Rx7iLFLP5iHSSfmOtqNpuyo4vYte0CvYEmPZXRmRQ=="
+      },
+      "ExtendedNumerics.BigDecimal": {
+        "type": "Transitive",
+        "resolved": "2025.1001.2.129",
+        "contentHash": "+woGT1lsBtwkntOpx2EZbdbySv0aWPefE0vrfvclxVdbi4oa2bbtphFPWgMiQe+kRCPICbfFJwp6w1DuR7Ge2Q=="
       },
       "Google.Protobuf": {
         "type": "Transitive",
@@ -608,6 +636,11 @@
           "MimeKit": "4.17.0"
         }
       },
+      "MathNet.Numerics.Signed": {
+        "type": "Transitive",
+        "resolved": "5.0.0",
+        "contentHash": "PSrHBVMf41SjbhlnpOMnoir8YgkyEJ6/nwxvjYpH+vJCexNcx2ms6zRww5yLVqLet1xLJgZ39swtKRTLhWdnAw=="
+      },
       "Microsoft.Agents.AI": {
         "type": "Transitive",
         "resolved": "1.13.0",
@@ -866,6 +899,11 @@
           "Microsoft.IdentityModel.Logging": "8.16.0"
         }
       },
+      "Microsoft.IO.RecyclableMemoryStream": {
+        "type": "Transitive",
+        "resolved": "3.0.0",
+        "contentHash": "irv0HuqoH8Ig5i2fO+8dmDNdFdsrO+DoQcedwIlb810qpZHBNQHZLW7C/AHBQDgLLpw2T96vmMAy/aE4Yj55Sg=="
+      },
       "Microsoft.ML.Tokenizers": {
         "type": "Transitive",
         "resolved": "2.0.0",
@@ -878,6 +916,11 @@
         "type": "Transitive",
         "resolved": "1.0.0",
         "contentHash": "N4KeF3cpcm1PUHym1RmakkzfkEv3GRMyofVv40uXsQhCQeglr2OHNcUk2WOG51AKpGO8ynGpo9M/kFXSzghwug=="
+      },
+      "Microsoft.SqlServer.TransactSql.ScriptDom": {
+        "type": "Transitive",
+        "resolved": "170.53.0",
+        "contentHash": "Ls8Pk590C9e6+f1PgbZ4QHPIjLAoxWf5JEVY+BDtO0XSMwJsfrlG/K1wx7oIdXt1Ry9n9DvXQb4P9WmDj4GmGg=="
       },
       "MimeKit": {
         "type": "Transitive",
@@ -926,6 +969,23 @@
         "resolved": "11.6.1",
         "contentHash": "WA4z8iK+0SOh2/qoo7rtEanj/LjJZ8oWWoXI8u1xcYMk6VzHONqpabJBYGrzqDO41ld+VQHOFL+B8MXncIVSSA=="
       },
+      "NPOI": {
+        "type": "Transitive",
+        "resolved": "2.7.1",
+        "contentHash": "Ho29P+Kl6jye33X999o/qP9lqNDtpSQM/OnbdAcGhFBRpa30aqtMo+iNqa/EJFvZrQCo0z98drrCzCgGfjo3uA==",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.3.1",
+          "Enums.NET": "4.0.1",
+          "ExtendedNumerics.BigDecimal": "2025.1001.2.129",
+          "MathNet.Numerics.Signed": "5.0.0",
+          "Microsoft.IO.RecyclableMemoryStream": "3.0.0",
+          "SharpZipLib": "1.4.2",
+          "SixLabors.Fonts": "1.0.1",
+          "SixLabors.ImageSharp": "2.1.8",
+          "System.Configuration.ConfigurationManager": "6.0.0",
+          "System.Security.Cryptography.Pkcs": "6.0.3"
+        }
+      },
       "OpenAI": {
         "type": "Transitive",
         "resolved": "2.10.0",
@@ -958,6 +1018,21 @@
         "dependencies": {
           "SendGrid": "9.24.3"
         }
+      },
+      "SharpZipLib": {
+        "type": "Transitive",
+        "resolved": "1.4.2",
+        "contentHash": "yjj+3zgz8zgXpiiC3ZdF/iyTBbz2fFvMxZFEBPUcwZjIvXOf37Ylm+K58hqMfIBt5JgU/Z2uoUS67JmTLe973A=="
+      },
+      "SixLabors.Fonts": {
+        "type": "Transitive",
+        "resolved": "1.0.1",
+        "contentHash": "ljezRHWc7N0azdQViib7Aa5v+DagRVkKI2/93kEbtjVczLs+yTkSq6gtGmvOcx4IqyNbO3GjLt7SAQTpLkySNw=="
+      },
+      "SixLabors.ImageSharp": {
+        "type": "Transitive",
+        "resolved": "2.1.8",
+        "contentHash": "ML1++vactR5xMW36wHA2nAX3vc6VpR62qYnpopQdLNGbP8BAJ/ckv1IrGIIFRUEQ0JS9EgWr1y1gEa/81f+HaA=="
       },
       "SkiaSharp": {
         "type": "Transitive",

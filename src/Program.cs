@@ -23,7 +23,11 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 using Samples.DancingGoat;
 
+using XperienceCommunity.SqlBrowser;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSqlBrowser(o => o.UseSafeQuerySelect = false);
 
 builder.Services.AddXperienceCloudStoragePathMapping();
 builder.Services.AddXperienceCloudApplicationInsights(builder.Configuration);
@@ -46,12 +50,12 @@ builder.Services.AddKentico(features =>
     {
         DefaultSectionIdentifier = ComponentIdentifiers.SINGLE_COLUMN_SECTION,
         RegisterDefaultSection = false,
-        ContentTypeNames = new[]
-        {
+        ContentTypeNames =
+        [
             LandingPage.CONTENT_TYPE_NAME,
             ContactsPage.CONTENT_TYPE_NAME,
             ArticlePage.CONTENT_TYPE_NAME
-        }
+        ]
     });
 
     features.UseEmailBuilder();
