@@ -2,7 +2,7 @@
 <cms.resource>
   <ResourceDescription>SQL browser module</ResourceDescription>
   <ResourceDisplayName>Xperience Community- SQL browser</ResourceDisplayName>
-  <ResourceGUID>87cd59d1-31fe-4b62-a6a6-bc8b6e124a2b</ResourceGUID>
+  <ResourceGUID>52f9a6cb-b2a2-4652-83b4-283d398d8932</ResourceGUID>
   <ResourceIsInDevelopment>False</ResourceIsInDevelopment>
   <ResourceName>Community.SqlBrowser</ResourceName>
 </cms.resource>

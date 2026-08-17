@@ -58,7 +58,6 @@
           <explanationtextashtml>False</explanationtextashtml>
           <fieldcaption>Text</fieldcaption>
           <fielddescriptionashtml>False</fielddescriptionashtml>
-          <includeincontentgeneration>False</includeincontentgeneration>
           <includeintranslation>True</includeintranslation>
         </properties>
         <settings>

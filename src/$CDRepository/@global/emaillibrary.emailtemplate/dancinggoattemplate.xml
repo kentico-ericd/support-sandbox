@@ -102,7 +102,7 @@
              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px;" class="wrapper">
                 <tr>
                     <td align="center" valign="top" style="padding: 15px 0;" class="logo">
-                      <img alt="Logo" src="{% HTMLEncode(BannerLogo[0].Data.ImageFile.Url) |(identity)GlobalAdministrator|(hash)e3a978d18a081959e56c0ff1ba28b7918b8fc75c282093a5ed4958cf322e6ae7%}" width="240" height="60" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" border="0">
+                      <img alt="Logo" src="{% HTMLEncode(BannerLogo[0].Data.ImageFile.Url) |(identity)GlobalAdministrator|(hash)08ae13dcd85961922ea4af33568a6a7c9b9d59a836461973c5118665c11cddec%}" width="240" height="60" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" border="0">
                     </td>
                 </tr>
             </table>
@@ -128,7 +128,7 @@
               <a class="followus-link" href="{% HTMLEncode(link.Data.SocialLinkUrl) %}" target="_blank" style="color: #B49669;">
                 <img src="{% HTMLEncode(link.Data.SocialLinkIcon[0].Data.ImageFile.Url) %}" alt="{% HTMLEncode(link.Data.SocialLinkTitle) %}" title="{% HTMLEncode(link.Data.SocialLinkTitle) %}" loading="lazy">
               </a>
-            {%} |(identity)GlobalAdministrator|(hash)24e2742719d7f734a3692de718de1b943fcbac352a9de7e6221f78067e4feb1b%}
+            {%} |(identity)GlobalAdministrator|(hash)f5384c78139856b8e9f14ccab1c6b51c3a9f6705c298903740ab2f1ada1217f3%}
           </p>
 		</td>
 	</tr>

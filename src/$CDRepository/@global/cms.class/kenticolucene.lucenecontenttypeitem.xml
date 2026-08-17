@@ -3,19 +3,19 @@
   <ClassDisplayName>Lucene Type Item</ClassDisplayName>
   <ClassFormDefinition>
     <form>
-      <field column="LuceneContentTypeItemId" columntype="integer" enabled="true" guid="9b8cbdaa-65f6-4838-afbe-e696ca15e0f7" isPK="true" />
-      <field column="LuceneContentTypeItemContentTypeName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="2fdb2ac2-cd46-4c10-94eb-bbe56888608f" visible="true" />
-      <field column="LuceneContentTypeItemIncludedPathItemId" columnprecision="0" columntype="integer" enabled="true" guid="98e2f5f8-a07c-46ee-903e-26a22860b7f3" refobjtype="kenticolucene.luceneincludedpathitem" reftype="Required" visible="true" />
-      <field column="LuceneContentTypeItemGuid" columnprecision="0" columntype="guid" enabled="true" guid="1ef3ad48-2734-4a91-9175-2d16e0659f3b" visible="true" />
-      <field column="LuceneContentTypeItemIndexItemId" columnprecision="0" columntype="integer" enabled="true" guid="0a7a55c0-31b6-42cc-a6c8-17ad8b5a2e84" refobjtype="kenticolucene.luceneindexitem" reftype="Required" visible="true" />
+      <field column="LuceneContentTypeItemId" columntype="integer" enabled="true" guid="7395b8da-2dfd-4876-9f7a-cbef4b28718d" isPK="true" />
+      <field column="LuceneContentTypeItemContentTypeName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="58f10d9e-302d-4b8d-a3b3-1e9b0eb627be" visible="true" />
+      <field column="LuceneContentTypeItemIncludedPathItemId" columnprecision="0" columntype="integer" enabled="true" guid="6fceaf3e-def9-4bc3-9f79-eba0aa69fc4e" refobjtype="kenticolucene.luceneincludedpathitem" reftype="Required" visible="true" />
+      <field column="LuceneContentTypeItemGuid" columnprecision="0" columntype="guid" enabled="true" guid="e1696aa2-cd31-4de1-8c83-ae33a1251e82" visible="true" />
+      <field column="LuceneContentTypeItemIndexItemId" columnprecision="0" columntype="integer" enabled="true" guid="4a5aa03a-b06d-4b1a-8c24-595b953e2930" refobjtype="kenticolucene.luceneindexitem" reftype="Required" visible="true" />
     </form>
   </ClassFormDefinition>
-  <ClassGUID>141569d0-a973-4233-91c1-32832c6e7cd3</ClassGUID>
+  <ClassGUID>02a9fb84-de0b-4d1e-80ea-5019222083f9</ClassGUID>
   <ClassHasUnmanagedDbSchema>False</ClassHasUnmanagedDbSchema>
   <ClassName>KenticoLucene.LuceneContentTypeItem</ClassName>
   <ClassResourceID>
     <CodeName>CMS.Integration.Lucene</CodeName>
-    <GUID>7b9d86f1-aaec-4865-8848-6ee396f1972e</GUID>
+    <GUID>db3eb5ca-af46-48c1-a204-ed2533753663</GUID>
     <ObjectType>cms.resource</ObjectType>
   </ClassResourceID>
   <ClassTableName>KenticoLucene_LuceneContentTypeItem</ClassTableName>

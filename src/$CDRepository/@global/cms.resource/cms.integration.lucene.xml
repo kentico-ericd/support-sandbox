@@ -2,7 +2,7 @@
 <cms.resource>
   <ResourceDescription>Kentico Lucene custom data</ResourceDescription>
   <ResourceDisplayName>Kentico Integration - Lucene</ResourceDisplayName>
-  <ResourceGUID>7b9d86f1-aaec-4865-8848-6ee396f1972e</ResourceGUID>
+  <ResourceGUID>db3eb5ca-af46-48c1-a204-ed2533753663</ResourceGUID>
   <ResourceIsInDevelopment>False</ResourceIsInDevelopment>
   <ResourceName>CMS.Integration.Lucene</ResourceName>
 </cms.resource>

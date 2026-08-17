@@ -3,19 +3,19 @@
   <ClassDisplayName>SQL browser saved query</ClassDisplayName>
   <ClassFormDefinition>
     <form>
-      <field column="SqlBrowserSavedQueryId" columntype="integer" enabled="true" guid="7b92e071-7c07-4d25-9382-b6ae712ae4d3" isPK="true" />
-      <field column="SqlBrowserSavedQueryGuid" columnprecision="0" columntype="guid" enabled="true" guid="f766df24-8b4f-42f8-a910-4339fbd42bd6" visible="true" />
-      <field column="SqlBrowserSavedQueryName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="65e2a4c6-d760-4ac8-a1bd-177fdaa2a278" visible="true" />
-      <field column="SqlBrowserSavedQueryText" columnprecision="0" columnsize="4000" columntype="text" enabled="true" guid="467c48ac-f7a7-4dc7-a28b-db06f113743c" visible="true" />
-      <field column="SqlBrowserSavedQueryOrder" columnprecision="0" columntype="integer" enabled="true" guid="7d379370-0809-49cf-a42b-030436aad026" visible="true" />
+      <field column="SqlBrowserSavedQueryId" columntype="integer" enabled="true" guid="215e0c58-f096-4fde-859b-103d8d62c51c" isPK="true" />
+      <field column="SqlBrowserSavedQueryGuid" columnprecision="0" columntype="guid" enabled="true" guid="d9993f20-5257-491d-a348-ba09a76ecbe8" visible="true" />
+      <field column="SqlBrowserSavedQueryName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="0e8b6d6c-9401-4439-a5d5-bca22b9f858c" visible="true" />
+      <field column="SqlBrowserSavedQueryText" columnprecision="0" columnsize="4000" columntype="text" enabled="true" guid="c6573f2e-13ea-4cd2-b2d7-dcdeeadacc43" visible="true" />
+      <field column="SqlBrowserSavedQueryOrder" columnprecision="0" columntype="integer" enabled="true" guid="bf285c88-8b4e-44fe-b887-00efed798698" visible="true" />
     </form>
   </ClassFormDefinition>
-  <ClassGUID>581f93c3-301a-49df-9549-033ca60a428e</ClassGUID>
+  <ClassGUID>640241bc-adfd-4757-97b9-69d5d73b5449</ClassGUID>
   <ClassHasUnmanagedDbSchema>False</ClassHasUnmanagedDbSchema>
   <ClassName>SqlBrowser.SavedQuery</ClassName>
   <ClassResourceID>
     <CodeName>Community.SqlBrowser</CodeName>
-    <GUID>87cd59d1-31fe-4b62-a6a6-bc8b6e124a2b</GUID>
+    <GUID>52f9a6cb-b2a2-4652-83b4-283d398d8932</GUID>
     <ObjectType>cms.resource</ObjectType>
   </ClassResourceID>
   <ClassTableName>SqlBrowser_SavedQuery</ClassTableName>

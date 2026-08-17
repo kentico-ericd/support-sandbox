@@ -12,7 +12,7 @@
   </ContentItemCommonDataContentLanguageID>
   <ContentItemCommonDataGUID>6b6b58d1-a0ac-400e-ad8d-52e1ae7e7d80</ContentItemCommonDataGUID>
   <ContentItemCommonDataIsLatest>True</ContentItemCommonDataIsLatest>
-  <ContentItemCommonDataLastPublishedWhen>2024-03-07 12:31:55Z</ContentItemCommonDataLastPublishedWhen>
+  <ContentItemCommonDataLastPublishedWhen>2026-08-15 21:46:04Z</ContentItemCommonDataLastPublishedWhen>
   <ContentItemCommonDataVersionStatus>2</ContentItemCommonDataVersionStatus>
   <ContentItemCommonDataVisualBuilderTemplateConfiguration />
   <ContentItemCommonDataVisualBuilderWidgets>
@@ -79,7 +79,7 @@
   <SEOFieldsTitle>Contacts - Dancing Goat</SEOFieldsTitle>
   <ContentItemObjectReferences>
     <cms.contentitemobjectreference>
-      <ContentItemObjectReferenceGUID>c35a6c07-9d3f-4941-9afd-df9bf7131a23</ContentItemObjectReferenceGUID>
+      <ContentItemObjectReferenceGUID>f973b6ae-42f0-4103-b28b-305931cb5151</ContentItemObjectReferenceGUID>
       <ContentItemObjectReferenceSourceCommonDataID>
         <GUID>6b6b58d1-a0ac-400e-ad8d-52e1ae7e7d80</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>

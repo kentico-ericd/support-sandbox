@@ -3,20 +3,20 @@
   <ClassDisplayName>Lucene Index Item</ClassDisplayName>
   <ClassFormDefinition>
     <form>
-      <field column="LuceneIndexItemId" columntype="integer" enabled="true" guid="b3273178-be0b-4fce-8980-ef3667d9fb62" isPK="true" />
-      <field column="LuceneIndexItemGuid" columnprecision="0" columntype="guid" enabled="true" guid="92d7523d-705a-4c85-96fb-5b4a20536f0d" visible="true" />
-      <field column="LuceneIndexItemIndexName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="5b982b38-3eab-4378-9297-c24c06f829fe" visible="true" />
-      <field column="LuceneIndexItemStrategyName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="91ad730d-5b4f-4540-b2c6-b08cbd11827c" visible="true" />
-      <field column="LuceneIndexItemAnalyzerName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="d844b4bb-b962-4d87-96fd-662029c919c5" visible="true" />
-      <field allowempty="true" column="LuceneIndexItemRebuildHook" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="a4162ee0-db93-44d8-8b09-6a397b7a14f7" visible="true" />
+      <field column="LuceneIndexItemId" columntype="integer" enabled="true" guid="903146d2-e9e2-4dc1-aa10-4773514b07fd" isPK="true" />
+      <field column="LuceneIndexItemGuid" columnprecision="0" columntype="guid" enabled="true" guid="95e18730-01c6-4c05-8c5a-38143de8d699" visible="true" />
+      <field column="LuceneIndexItemIndexName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="d0f92580-4ea0-48c8-8322-7718ae2f778e" visible="true" />
+      <field column="LuceneIndexItemStrategyName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="8fecb4b8-f9a9-401d-a60c-1943fe170046" visible="true" />
+      <field column="LuceneIndexItemAnalyzerName" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="22ca11b7-af6e-4b51-88b5-b7b5b11909a3" visible="true" />
+      <field allowempty="true" column="LuceneIndexItemRebuildHook" columnprecision="0" columnsize="100" columntype="text" enabled="true" guid="e6052340-be49-48f4-a7c7-c162fc307978" visible="true" />
     </form>
   </ClassFormDefinition>
-  <ClassGUID>fbc1c304-fafc-49ab-a981-0625b14cbc4a</ClassGUID>
+  <ClassGUID>0ee2fbfc-37cc-43d5-b263-8aaaa21dce66</ClassGUID>
   <ClassHasUnmanagedDbSchema>False</ClassHasUnmanagedDbSchema>
   <ClassName>KenticoLucene.LuceneIndexItem</ClassName>
   <ClassResourceID>
     <CodeName>CMS.Integration.Lucene</CodeName>
-    <GUID>7b9d86f1-aaec-4865-8848-6ee396f1972e</GUID>
+    <GUID>db3eb5ca-af46-48c1-a204-ed2533753663</GUID>
     <ObjectType>cms.resource</ObjectType>
   </ClassResourceID>
   <ClassTableName>KenticoLucene_LuceneIndexItem</ClassTableName>
