@@ -68,6 +68,17 @@
           "Kentico.Xperience.Lucene.Core": "15.0.5"
         }
       },
+      "Kentico.Xperience.MiniProfiler": {
+        "type": "Direct",
+        "requested": "[3.0.0, )",
+        "resolved": "3.0.0",
+        "contentHash": "TcBQh/IQFsUTlzYdh5YtTLQbL7g1uzuDvlaPxovpaV/unbjngmkrApxB/wxhplaSjtI/ukTDwqYmts3JSlUtqg==",
+        "dependencies": {
+          "MiniProfiler.AspNetCore.Mvc": "4.5.4",
+          "kentico.xperience.azurestorage": "31.0.0",
+          "kentico.xperience.webapp": "31.0.0"
+        }
+      },
       "Kentico.Xperience.Mjml": {
         "type": "Direct",
         "requested": "[31.7.2, )",
@@ -1015,6 +1026,27 @@
           "BouncyCastle.Cryptography": "2.6.2",
           "System.Security.Cryptography.Pkcs": "10.0.0"
         }
+      },
+      "MiniProfiler.AspNetCore": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "meedJsjpYOeHPhE8H6t+dGQ9zLxcCQVpi4DXzmxmYAXywmTzlo6jv2IASUv5QijTU0CxsROln3FHd8RsTO8Z8A==",
+        "dependencies": {
+          "MiniProfiler.Shared": "4.5.4"
+        }
+      },
+      "MiniProfiler.AspNetCore.Mvc": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "+NqXyCy9aNdroPm6leW5+cpngtCnkCdoyOlJzvVN62uucSx+MYkx8jmKbgAt+aCP6aghADfHBExwrTIldHxapg==",
+        "dependencies": {
+          "MiniProfiler.AspNetCore": "4.5.4"
+        }
+      },
+      "MiniProfiler.Shared": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "f8ckFm/xTS8C2Bn4BdVc94dNvg+tRfk0e4XFaETOqRi6r0PUOyn3Z9jTQCVpB3R1pP5WiRsEIrqqxux95BVpTA=="
       },
       "Mjml.Net": {
         "type": "Transitive",

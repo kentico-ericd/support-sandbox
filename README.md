@@ -68,6 +68,7 @@ After deploying changes to SaaS and testing, it is a good idea to "reset" the pr
 These are settings, customizations, and integrations that are not present in a standard Dancing Goat installation, added for easier testing of common scenarios:
 
 - AIRA enabled
+- [Miniprofiler](https://github.com/Kentico/xperience-by-kentico-miniprofiler)
 - [SQL Browser](https://github.com/kentico-ericd/xperience-community-sqlbrowser)
 - Rich text editor [configuration](/src/Customizations/RichText/CustomRichTextRegistration.cs)
 - [Lucene search](https://github.com/Kentico/xperience-by-kentico-lucene) with [custom indexing strategy](/src/Customizations/Search/ArticleIndexingStrategy.cs) (search not implemented on live site yet)

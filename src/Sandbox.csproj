@@ -30,6 +30,7 @@
     <PackageReference Include="kentico.xperience.cloud" />
     <PackageReference Include="kentico.xperience.imageprocessing" />
     <PackageReference Include="Kentico.Xperience.Lucene" />
+    <PackageReference Include="Kentico.Xperience.MiniProfiler" />
     <PackageReference Include="kentico.xperience.mjml" />
     <PackageReference Include="kentico.xperience.webapp" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />

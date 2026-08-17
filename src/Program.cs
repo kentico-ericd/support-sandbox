@@ -76,6 +76,8 @@ builder.Services.AddKentico(features =>
     features.UseCommerce();
 });
 
+builder.Services.AddKenticoMiniProfiler();
+
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
 builder.Services.AddLocalization()
@@ -114,6 +116,8 @@ if (builder.Environment.IsQa() ||
 }
 
 app.UseKentico();
+
+app.UseMiniProfiler();
 
 app.UseAuthorization();
 
