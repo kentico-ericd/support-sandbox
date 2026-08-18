@@ -33,7 +33,6 @@ $WebProjectFullPath = Resolve-Path "../src"
 $OutputFolderFullPath = Join-Path $WebProjectFullPath "/bin/CloudDeployment/"
 $MetadataFileFullPath = Join-Path $OutputFolderFullPath "cloud-metadata.json"
 $LocalCDRepositoryFullPath = Join-Path $WebProjectFullPath $CDRepositoryFolderName
-$AssemblyFullPath = Join-Path $OutputFolderFullPath "$AssemblyName.dll" -Resolve
 
 # Storage assets paths
 $LocalStorageAssetsFullPath = Join-Path $WebProjectFullPath $StorageAssetsFolderName
@@ -86,6 +85,7 @@ if (Test-Path $LocalStorageAssetsFullPath) {
     }
 }
 
+$AssemblyFullPath = Join-Path $OutputFolderFullPath "$AssemblyName.dll" -Resolve
 $PackageMetadata = @{
     AssemblyName = $AssemblyName
     Version      = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($AssemblyFullPath).ProductVersion
