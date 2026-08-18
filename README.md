@@ -24,7 +24,7 @@ If you need to test something in the SaaS environment, first download this proje
    ```
 
 1. Edit the CMSConnectionString in the `appsettings.json` file in /src to connect the the new database
-
+1. Build the project using your IDE or `dotnet build`
 1. Execute the `CD-Restore.ps1` script, e.g. in Powershell or by right-clicking the file > **Run with PowerShell**
 
    ```ps
@@ -37,6 +37,7 @@ If you need to test something in the SaaS environment, first download this proje
 
 After [cloning](#running-the-sandbox-locally) the project and making changes for testing purposes, you should deploy it to the **QA** environment. Typically, you will not need to deploy to PROD unless you are specifically testing something in that environment.
 
+1. Build the project using your IDE or `dotnet build`
 1. Run the CD store script, e.g. in Powershell or by right-clicking the file > **Run with PowerShell**
 
    ```ps
