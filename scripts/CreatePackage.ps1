@@ -24,17 +24,31 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
-$OutputFolderPath = "../src/bin/CloudDeployment/"
-$MetadataFilePath = Join-Path $OutputFolderPath "cloud-metadata.json"
-$CDRepositoryFolderPath = "../src/`$CDRepository"
+$CDRepositoryFolderName = "`$CDRepository"
 $StorageAssetsFolderName = "`$StorageAssets"
 $BuildNumber = (Get-Date).ToUniversalTime().ToString("yyyyMMddHHmm")
 
+# Resolve full paths
+$WebProjectFullPath = Resolve-Path "../src"
+$OutputFolderFullPath = Join-Path $WebProjectFullPath "/bin/CloudDeployment/"
+$MetadataFileFullPath = Join-Path $OutputFolderFullPath "cloud-metadata.json"
+$LocalCDRepositoryFullPath = Join-Path $WebProjectFullPath $CDRepositoryFolderName
+$AssemblyFullPath = Join-Path $OutputFolderFullPath "$AssemblyName.dll" -Resolve
+
+# Storage assets paths
+$LocalStorageAssetsFullPath = Join-Path $WebProjectFullPath $StorageAssetsFolderName
+$OutputStorageAssetsFullPath = Join-Path $OutputFolderFullPath $StorageAssetsFolderName
+
+# Check for non-existing or empty CD repository which could corrupt the database
+if (-not (Test-Path $LocalCDRepositoryFullPath) -or (@(Get-ChildItem -Path $LocalCDRepositoryFullPath -Directory).Count -le 0)) {
+    throw "Cannot detect CD repository on path '$LocalCDRepositoryFullPath'. Make sure to run 'dotnet run --kxp-cd-store --repository-path ""```$CDRepository""' before 'Export-DeploymentPackage.ps1'."
+}
+
 # Remove previously published website
-Remove-Item -Recurse -Force $OutputFolderPath -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force $OutputFolderFullPath -ErrorAction SilentlyContinue
 
 # Publish the application in the 'Release' mode
-$PublishCommand = "dotnet publish ../src --nologo -c Release -o $OutputFolderPath"
+$PublishCommand = "dotnet publish $WebProjectFullPath --nologo -c Release -o $OutputFolderFullPath"
 
 if (!$KeepProductVersion) {
     $PublishCommand += " --version-suffix $BuildNumber"
@@ -46,36 +60,23 @@ if ($LASTEXITCODE -ne 0) {
     throw "Publishing the website failed."
 }
 
-# Get CD repositories paths
-$LocalCDRepositoryPath = Join-Path (Resolve-Path .) $CDRepositoryFolderPath
-$OutputCDRepositoryPath = Join-Path $OutputFolderPath $CDRepositoryFolderPath
-
-# Check for non-existing or empty CD repository which could corrupt the database
-if (-not (Test-Path $LocalCDRepositoryPath) -or (@(Get-ChildItem -Path $LocalCDRepositoryPath -Directory).Count -le 0)) {
-    throw "Cannot detect CD repository on path '$LocalCDRepositoryPath'. Make sure to run 'dotnet run --kxp-cd-store --repository-path ""```$CDRepository""' before 'Export-DeploymentPackage.ps1'."
-}
-
 # Copy content of the CD repository to the output folder
-Copy-Item -Force -Recurse "$LocalCDRepositoryPath" -Destination $OutputCDRepositoryPath
+Copy-Item -Force -Recurse "$LocalCDRepositoryFullPath" -Destination $OutputFolderFullPath
 
-# Get storage assets paths
-$LocalStorageAssetsPath = Join-Path (Resolve-Path "../src") $StorageAssetsFolderName
-$OutputStorageAssetsPath = Join-Path $OutputFolderPath $StorageAssetsFolderName
-
-if (Test-Path $LocalStorageAssetsPath) {
+if (Test-Path $LocalStorageAssetsFullPath) {
     # Check if storage asset top-level directories have valid names
-    Get-ChildItem -Path $LocalStorageAssetsPath | % {
+    Get-ChildItem -Path $LocalStorageAssetsFullPath | % {
         if ($_.Name -cnotmatch "^[a-z0-9](?!.*--)[a-z0-9-]{1,61}[a-z0-9]$") {
             throw "Storage asset directory '$($_.FullName)' does not have a valid name. Top level storage asset directories must have names that are 3-63 characters long and contain only lowercase letters, numbers or dashes (-). Every dash symbol must be surrounded by letters or numbers."
         }
     }
 
     # Copy storage assets to the output folder
-    New-Item -Force -ItemType Directory $OutputStorageAssetsPath | Out-Null
-    Copy-Item -Force -Recurse "$LocalStorageAssetsPath/*" -Destination $OutputStorageAssetsPath
+    New-Item -Force -ItemType Directory $OutputStorageAssetsFullPath | Out-Null
+    Copy-Item -Force -Recurse "$LocalStorageAssetsFullPath/*" -Destination $OutputStorageAssetsFullPath
 
     # Deployed assets need to have lowercase names
-    Get-ChildItem -Path $OutputStorageAssetsPath -Recurse | % {
+    Get-ChildItem -Path $OutputStorageAssetsFullPath -Recurse | % {
         $lowercasedAssetName = $_.Name.ToLowerInvariant()
 
         if ($_.Name -cne $lowercasedAssetName) {
@@ -85,24 +86,23 @@ if (Test-Path $LocalStorageAssetsPath) {
     }
 }
 
-$AssemblyPath = Join-Path $OutputFolderPath "$AssemblyName.dll" -Resolve
 $PackageMetadata = @{
     AssemblyName = $AssemblyName
-    Version      = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($AssemblyPath).ProductVersion
+    Version      = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($AssemblyFullPath).ProductVersion
     SupportsZeroDowntimeDeployment = $ZeroDowntimeSupportEnabled.IsPresent
 }
 
 # Add necessary metadata if storage assets folder has been exported as well
-if (Test-Path $OutputStorageAssetsPath) {
+if (Test-Path $OutputStorageAssetsFullPath) {
     $PackageMetadata.Add("StorageAssetsDirectory", $StorageAssetsFolderName)
     $PackageMetadata.Add("StorageAssetsDeploymentMode", $StorageAssetsDeploymentMode)
 }
 
 # Create all necessary metadata for cloud-based package deployment
-$PackageMetadata | ConvertTo-Json -Depth 2 | Set-Content $MetadataFilePath -Encoding utf8
+$PackageMetadata | ConvertTo-Json -Depth 2 | Set-Content $MetadataFileFullPath -Encoding utf8
 
 # Create a deployment package
 if (Test-Path -Path $OutputPackagePath -PathType Container) {
     $OutputPackagePath = Join-Path -Path $OutputPackagePath -ChildPath "./DeploymentPackage.zip"
 }
-Compress-Archive -Force -Path "$OutputFolderPath/*" -DestinationPath $OutputPackagePath
+Compress-Archive -Force -Path "$OutputFolderFullPath/*" -DestinationPath $OutputPackagePath
