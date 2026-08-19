@@ -44,8 +44,8 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
-      - name: Get current timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+      - name: Set current timestamp
+        run: echo "TIMESTAMP=$(date +'%s')" >> $GITHUB_ENV
 
         # Trick SaaS pipeline into always running CD restore by modifying a file in the CD repo
       - name: Set CD repository timestamp
@@ -53,7 +53,7 @@ jobs:
         with:
           path: src/$CDRepository/time.txt
           write-mode: overwrite
-          contents: ${{ env.TIMESTAMP }}
+          contents: "${{ env.TIMESTAMP }}"
 
         # Skip build step as the publish command in deployment script already builds
       - name: Generate deployment package
