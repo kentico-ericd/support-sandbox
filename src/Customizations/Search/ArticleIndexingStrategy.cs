@@ -15,8 +15,6 @@ public class ArticleIndexingStrategy(IContentRetriever contentRetriever) : Defau
     public override async Task<Document?> MapToLuceneDocumentOrNull(IIndexEventItemModel item)
     {
         var document = new Document();
-        string url = string.Empty;
-        string title = string.Empty;
 
         if (item is IndexEventWebPageItemModel webpageItem &&
             string.Equals(item.ContentTypeName, ArticlePage.CONTENT_TYPE_NAME, StringComparison.OrdinalIgnoreCase))
@@ -34,12 +32,10 @@ public class ArticleIndexingStrategy(IContentRetriever contentRetriever) : Defau
                 return null;
             }
 
-            title = page.ArticleTitle;
-            url = page.GetUrl().AbsoluteUrl;
+            document.Add(new TextField(nameof(ArticleSearchModel.Title), page.ArticleTitle, Field.Store.YES));
+            document.Add(new TextField(nameof(ArticleSearchModel.Url), page.GetUrl().AbsoluteUrl, Field.Store.YES));
+            document.Add(new TextField(nameof(ArticleSearchModel.Summary), page.ArticlePageSummary, Field.Store.YES));
         }
-
-        document.Add(new TextField(nameof(ArticleSearchResult.Title), title, Field.Store.YES));
-        document.Add(new TextField(nameof(ArticleSearchResult.Url), url, Field.Store.YES));
 
         return document;
     }

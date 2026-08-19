@@ -86,6 +86,12 @@
                 </div>
                 <vc:navigation-menu />
                 <ul class="additional-menu">
+                    <li>
+                        <form action="@Url.Action("Index", "Search")" method="get">
+                            <input type="text" name="searchText" placeholder="Search" />
+                            <button type="submit">Go</button>
+                        </form>
+                    </li>
                     <li><a href="@shoppingCartPageUrl"><span class="icon-shopping-cart"></span></a></li>
                     <li class="dropdown">
                         <a title="User" class="dropbtn">

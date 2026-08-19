@@ -1,0 +1,21 @@
+﻿@using DancingGoat.Customizations.Search
+@model ArticleSearchResults
+
+<h2>Results for "@Model.SearchText"</h2>
+
+@if (!Model.Results.Any())
+{
+    <p>No results found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var result in Model.Results)
+        {
+            <li>
+                <a href="@result.Url">@result.Title</a> [@result.Score]
+                <p>@result.Summary</p>
+            </li>
+        }
+    </ul>
+}
