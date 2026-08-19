@@ -1,6 +1,7 @@
 # Xperience by Kentico SaaS Sandbox Project
 
 [![CI: Build and Test](https://github.com/kentico-ericd/support-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/kentico-ericd/support-sandbox/actions/workflows/ci.yml)
+[![Last reset](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fkentico-ericd%2Fsupport-sandbox%2Factions%2Fworkflows%2F332261948%2Fruns%3Fstatus%3Dcompleted%26conclusion%3Dsuccess%26per_page%3D1&query=%24.workflow_runs%5B0%5D.run_started_at&label=Last%20reset)](https://github.com/kentico-ericd/support-sandbox/actions/workflows/deploy.yml)
 
 ## Description
 
