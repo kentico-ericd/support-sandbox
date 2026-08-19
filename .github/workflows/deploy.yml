@@ -44,6 +44,14 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
+        # Trick SaaS pipeline into always running CD restore by modifying a file in the CD repo
+      - name: Set CD repository timestamp
+        uses: jaywcjlove/github-action-modify-file-content@main
+        with:
+          path: src/$CDRepository/time.txt
+          body: "{{date:YYYY-MM-DD HH:mm:ss}}"
+          overwrite: "true"
+
         # Skip build step as the publish command in deployment script already builds
       - name: Generate deployment package
         working-directory: "./scripts"
