@@ -53,8 +53,7 @@ jobs:
         with:
           path: src/$CDRepository/time.txt
           write-mode: overwrite
-          contents: |
-            ${{ env.TIMESTAMP }}
+          contents: ${{ env.TIMESTAMP }}
 
         # Skip build step as the publish command in deployment script already builds
       - name: Generate deployment package
