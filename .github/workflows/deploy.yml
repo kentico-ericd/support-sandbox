@@ -1,6 +1,6 @@
 name: Deploy to SaaS
 
-run-name: Deploy to SaaS (${{ inputs.environment }}) by @${{ github.actor }}
+run-name: Deploy to SaaS (${{ inputs.environment }})
 
 on:
   workflow_dispatch:
