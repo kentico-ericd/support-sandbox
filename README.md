@@ -72,5 +72,5 @@ These are settings, customizations, and integrations that are not present in a s
 - AIRA enabled
 - [Miniprofiler](https://github.com/Kentico/xperience-by-kentico-miniprofiler)
 - [SQL Browser](https://github.com/kentico-ericd/xperience-community-sqlbrowser)
-- Rich text editor [configuration](/src/Customizations/RichText/CustomRichTextRegistration.cs)
+- Rich text editor configuration for [content fields](/src/Customizations/RichText/CustomRichTextRegistration.cs) and [widgets](/src/Views/Shared/_LandingPageLayout.cshtml#59)
 - [Lucene search](https://github.com/Kentico/xperience-by-kentico-lucene) with [custom indexing strategy](/src/Customizations/Search/ArticleIndexingStrategy.cs) and [live site search](/src/Controllers/SearchController.cs)

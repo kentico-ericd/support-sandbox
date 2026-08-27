@@ -53,5 +53,10 @@
         </footer>
     </div>
     <page-builder-scripts />
+    @* Custom rich text widget toolbar *@
+    @if (Context.Kentico().PageBuilder().GetMode() == PageBuilderMode.Edit)
+    {
+        <script src="~/Scripts/customPageBuilderRichTextToolbar.js"></script>
+    }
 </body>
 </html>
