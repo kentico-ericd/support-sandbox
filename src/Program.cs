@@ -54,6 +54,20 @@ if (builder.Environment.IsQa() ||
     builder.Services.AddXperienceCloudDataProtection(builder.Configuration);
 }
 
+// Virtual inbox- enabled on local and QA environments only
+if (builder.Environment.IsQa() || builder.Environment.IsDevelopment())
+{
+    builder.Services
+     .AddVirtualInboxClient(builder.Configuration)
+     .AddMcpServer()
+     .WithHttpTransport()
+     .WithVirtualInboxTools();
+}
+else
+{
+    builder.Services.AddVirtualInboxCore();
+}
+
 builder.Services.AddKentico(features =>
 {
     features.UsePageBuilder(new PageBuilderOptions
@@ -124,6 +138,12 @@ app.UseAuthorization();
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 app.Kentico().MapRoutes();
+
+// Virtual inbox- enabled on local and QA environments only
+if (builder.Environment.IsQa() || builder.Environment.IsDevelopment())
+{
+    app.MapMcp("/mcp");
+}
 
 app.MapControllerRoute(
    name: "error",

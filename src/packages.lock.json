@@ -90,6 +90,36 @@
           "Mjml.Net": "4.11.0"
         }
       },
+      "Kentico.Xperience.VirtualInbox": {
+        "type": "Direct",
+        "requested": "[1.3.0, )",
+        "resolved": "1.3.0",
+        "contentHash": "2Lb7W6FPvnTNp7xr3zodN6lr7dS7nQ9QyGPUeclZ6AUKJam0CX92e6XFMtYxUL55zrEHPKthiAfZuWIVzh2E+A==",
+        "dependencies": {
+          "kentico.xperience.core": "31.2.0"
+        }
+      },
+      "Kentico.Xperience.VirtualInbox.Admin": {
+        "type": "Direct",
+        "requested": "[1.3.0, )",
+        "resolved": "1.3.0",
+        "contentHash": "wL8kH6KVw+9yf+H/qa0t/baTE9U8KUjKj1zwg+L9826UexrDAj6SWlkoDbZ/53ei3+G53W77MJm3ALI14Xnr9g==",
+        "dependencies": {
+          "Kentico.Xperience.VirtualInbox": "1.3.0",
+          "kentico.xperience.admin": "31.2.0"
+        }
+      },
+      "Kentico.Xperience.VirtualInbox.MCP": {
+        "type": "Direct",
+        "requested": "[1.3.0, )",
+        "resolved": "1.3.0",
+        "contentHash": "Tf4F8+8Bh52EWyMpt3z/aaDsExgv3vG49L1DH3P3PwuBWOfzoXWux+o3srGkkYqw1rCi5GnZX6pNIPinnL4EGg==",
+        "dependencies": {
+          "Kentico.Xperience.VirtualInbox": "1.3.0",
+          "ModelContextProtocol": "1.1.0",
+          "ModelContextProtocol.AspNetCore": "1.1.0"
+        }
+      },
       "Kentico.Xperience.WebApp": {
         "type": "Direct",
         "requested": "[31.7.2, )",
@@ -1054,6 +1084,30 @@
         "contentHash": "DCKiojf/UOZ48d7Z6vD9gfXOlT81NMZqqpraDUQJZ1Ykcop/D8BmPhCYY6vWYI8rZbDd4Vepy0bb1EmoSvbEGA==",
         "dependencies": {
           "HtmlPerformanceKit": "1.0.0"
+        }
+      },
+      "ModelContextProtocol": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "dr7MeQocnOD9exXF2TIZc/80xp/wNVw3WpJZlz0X+ezMcOCXXkAwdMbpM5hohvnXw+KF29iaaYPJwUFbni+NCQ==",
+        "dependencies": {
+          "ModelContextProtocol.Core": "1.1.0"
+        }
+      },
+      "ModelContextProtocol.AspNetCore": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "I6jXZq7tTYzP9oWpZSnyUqveHWXOLykmPv9mrTyyYqwb0ZUgqVajp96Iu2opSeL/bjBfKV4Lwc2hZUXWCnAUnA==",
+        "dependencies": {
+          "ModelContextProtocol": "1.1.0"
+        }
+      },
+      "ModelContextProtocol.Core": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "3E/qGSPxAnuenD8uBT2NsHCP91ztn4WC9SfV7miKjpzDYQgVvGwbxnPhhZ8PAvltYWJ/P4wWbRmJ+2M5rZkrDQ==",
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0"
         }
       },
       "Mono.Cecil": {

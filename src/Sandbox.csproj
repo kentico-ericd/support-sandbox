@@ -32,6 +32,9 @@
     <PackageReference Include="Kentico.Xperience.Lucene" />
     <PackageReference Include="Kentico.Xperience.MiniProfiler" />
     <PackageReference Include="kentico.xperience.mjml" />
+    <PackageReference Include="Kentico.Xperience.VirtualInbox" />
+    <PackageReference Include="Kentico.Xperience.VirtualInbox.Admin" />
+    <PackageReference Include="Kentico.Xperience.VirtualInbox.MCP" />
     <PackageReference Include="kentico.xperience.webapp" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
     <PackageReference Include="XperienceCommunity.SqlBrowser" />
