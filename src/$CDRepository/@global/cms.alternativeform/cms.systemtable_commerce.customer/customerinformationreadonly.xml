@@ -28,7 +28,7 @@
           <visible>true</visible>
         </properties>
       </category>
-      <field column="CustomerFirstName" columnsize="300" dummy="altform" enabled="true" guid="7a6e3278-3d77-487c-ba20-93526ae2fbb0" system="true" visible="true" order="5">
+      <field column="CustomerFirstName" columnsize="300" dummy="altform" enabled="true" guid="7a6e3278-3d77-487c-ba20-93526ae2fbb0" visible="true" order="5">
         <settings>
           <controlname>Kentico.Administration.TextWithLabel</controlname>
         </settings>
@@ -38,7 +38,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="CustomerLastName" columnsize="300" dummy="altform" enabled="true" guid="b3152857-d119-4bdb-841f-5d4cc795e51f" system="true" visible="true" order="6">
+      <field column="CustomerLastName" columnsize="300" dummy="altform" enabled="true" guid="b3152857-d119-4bdb-841f-5d4cc795e51f" visible="true" order="6">
         <settings>
           <controlname>Kentico.Administration.TextWithLabel</controlname>
         </settings>
@@ -48,7 +48,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="CustomerEmail" columnsize="300" dummy="altform" enabled="true" guid="559bbe79-7d78-4d86-9ae6-bd149686db22" system="true" visible="true" order="7">
+      <field column="CustomerEmail" columnsize="300" dummy="altform" enabled="true" guid="559bbe79-7d78-4d86-9ae6-bd149686db22" visible="true" order="7">
         <settings>
           <controlname>Kentico.Administration.TextWithLabel</controlname>
         </settings>
@@ -58,7 +58,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="CustomerPhone" columnsize="300" dummy="altform" enabled="true" guid="7c4bf368-1f4f-4e9d-883c-048bb8eb8999" system="true" visible="true" order="8">
+      <field column="CustomerPhone" columnsize="300" dummy="altform" enabled="true" guid="7c4bf368-1f4f-4e9d-883c-048bb8eb8999" visible="true" order="8">
         <settings>
           <controlname>Kentico.Administration.TextWithLabel</controlname>
         </settings>

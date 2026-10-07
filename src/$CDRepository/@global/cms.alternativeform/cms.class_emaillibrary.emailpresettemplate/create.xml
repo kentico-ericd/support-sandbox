@@ -39,7 +39,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="EmailPresetTemplateIcon" enabled="true" guid="37108416-e557-44a9-9310-73bcc7c78afe" visible="true">
+      <field column="EmailPresetTemplateIcon" enabled="true" guid="6474f3b6-78f4-44ab-b036-0010db3617f6" visible="true">
         <settings>
           <controlname>Kentico.Administration.IconSelector</controlname>
         </settings>

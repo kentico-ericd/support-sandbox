@@ -31,7 +31,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="MemberRoleDescription" enabled="true" guid="49a8ef77-6c6b-4cee-9a52-92d75ccb4ad1" visible="true">
+      <field column="MemberRoleDescription" enabled="true" guid="c5aa085d-b504-4e0f-9177-baa70fd12d62" visible="true">
         <settings>
           <controlname>Kentico.Administration.TextArea</controlname>
           <CopyButtonVisible>False</CopyButtonVisible>

@@ -46,7 +46,7 @@
           <visible>true</visible>
         </properties>
       </category>
-      <field column="CampaignStartWhen" enabled="true" guid="5abf682a-31d1-46f9-8179-ae31a2aebcf1" visible="true" order="6">
+      <field column="CampaignStartWhen" enabled="true" guid="5abf682a-31d1-46f9-8179-ae31a2aebcf1" visible="true">
         <settings>
           <controlname>Kentico.Administration.DateTimeInput</controlname>
         </settings>
@@ -57,7 +57,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="CampaignEndWhen" enabled="true" guid="77741d45-5605-4123-833f-bd1e043e750f" visible="true" order="7">
+      <field column="CampaignEndWhen" enabled="true" guid="77741d45-5605-4123-833f-bd1e043e750f" visible="true">
         <settings>
           <controlname>Kentico.Administration.DateTimeInput</controlname>
         </settings>
@@ -76,8 +76,8 @@
       </category>
       <field column="CampaignBrief" enabled="true" guid="6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c" visible="true" order="9">
         <settings>
-          <controlname>Kentico.Administration.RichTextEditor</controlname>
           <ConfigurationName>Kentico.Administration.CampaignContent</ConfigurationName>
+          <controlname>Kentico.Administration.RichTextEditor</controlname>
         </settings>
         <properties>
           <explanationtextashtml>False</explanationtextashtml>
@@ -86,6 +86,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
+      <field column="CampaignReport" guid="eb83ba43-d62a-4629-9eed-b7c78347a580" enabled="" order="10" />
     </form>
   </FormDefinition>
   <FormDisplayName>Edit campaign</FormDisplayName>

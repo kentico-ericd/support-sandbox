@@ -27,7 +27,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="WorkspaceName" enabled="true" guid="13f9c9f7-c207-4653-bcf4-f7818d7e7cc4" visible="true" order="3">
+      <field column="WorkspaceName" enabled="true" guid="056a3ca8-4ed5-413c-9d62-e6d87797c524" visible="true" order="3">
         <settings>
           <controlname>Kentico.Administration.CodeName</controlname>
           <HasAutomaticCodeNameGenerationOption>True</HasAutomaticCodeNameGenerationOption>

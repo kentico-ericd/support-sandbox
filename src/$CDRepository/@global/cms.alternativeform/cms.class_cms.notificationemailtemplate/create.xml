@@ -35,7 +35,7 @@
           <fielddescriptionashtml>False</fielddescriptionashtml>
         </properties>
       </field>
-      <field column="NotificationEmailTemplateDescription" enabled="true" guid="7dcd35bc-e464-4d55-b6c1-aed1a87b8f3a" visible="true" order="6">
+      <field column="NotificationEmailTemplateDescription" enabled="true" guid="86d3ef5b-becd-4369-ac2e-7744b451b917" visible="true" order="6">
         <settings>
           <controlname>Kentico.Administration.TextArea</controlname>
           <CopyButtonVisible>False</CopyButtonVisible>

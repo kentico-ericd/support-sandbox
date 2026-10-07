@@ -13,7 +13,7 @@
       <field column="NotificationEmailTemplateDisplayName" guid="fc2656d9-80dc-4dee-b818-3a30d2a8c11c" enabled="" />
       <field column="NotificationEmailTemplateDescription" guid="86d3ef5b-becd-4369-ac2e-7744b451b917" enabled="" />
       <field column="NotificationEmailTemplateLastModified" guid="f2db3ccf-94a6-4a35-85a1-7d14f508a8e0" enabled="" order="5" />
-      <field column="NotificationEmailTemplateCode" enabled="true" guid="7f6a3ecd-e090-4c57-93ea-335290884be2" visible="true" order="6">
+      <field column="NotificationEmailTemplateCode" enabled="true" guid="83f870c2-c5b6-4db6-9329-03e26a2c53dd" visible="true" order="6">
         <settings>
           <controlname>Kentico.Administration.CodeEditor</controlname>
           <Language>html</Language>
