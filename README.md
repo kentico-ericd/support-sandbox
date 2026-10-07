@@ -8,7 +8,7 @@
 This project is the sample Dancing Goat website which can be deployed to the Support team's [sandbox SaaS environments](https://xperience-portal.com/67cd472c-ab16-453f-f8e3-08dbdac1379b/deployments) for testing purposes. The project will be updated to include common scenarios such as rich text editor customizations- please create a GitHub issue if you would like something to be added to the project!
 
 > [!NOTE]  
-> The current Xperience by Kentico version is 31.7.2 running on .NET 10
+> The current Xperience by Kentico version is 31.9.1 running on .NET 10
 
 ## Running the sandbox locally
 
