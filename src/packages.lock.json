@@ -164,13 +164,13 @@
       },
       "XperienceCommunity.SqlBrowser": {
         "type": "Direct",
-        "requested": "[5.0.0, )",
-        "resolved": "5.0.0",
-        "contentHash": "+5xclNQMGPONKgWSxOx9xI2164FgiztRxc5+z05w4p1A96FYshjqWowFLRAei9mD5lBFPbvgeM7tnmF4GJDnWQ==",
+        "requested": "[6.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "AINlbe+iemn0wBfb21YUJZtdK6LshjM4ANJKbWbqRcQrwRUxrjb6C0DeQ+1DFfG7pK0l3kkeuTrUbUK9+tG/cA==",
         "dependencies": {
           "CsvHelper": "33.0.1",
-          "Kentico.Xperience.Admin": "30.11.2",
-          "Kentico.Xperience.WebApp": "30.11.2",
+          "Kentico.Xperience.Admin": "31.9.0",
+          "Kentico.Xperience.WebApp": "31.9.0",
           "Microsoft.SqlServer.TransactSql.ScriptDom": "170.53.0",
           "NPOI": "2.7.1"
         }
