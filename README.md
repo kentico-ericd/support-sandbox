@@ -8,7 +8,7 @@
 This project is the sample Dancing Goat website which can be deployed to the Support team's [sandbox SaaS environments](https://xperience-portal.com/67cd472c-ab16-453f-f8e3-08dbdac1379b/deployments) for testing purposes. The project will be updated to include common scenarios such as rich text editor customizations- please create a GitHub issue if you would like something to be added to the project!
 
 > [!NOTE]  
-> The current Xperience by Kentico version is 31.9.1 running on .NET 10
+> The current Xperience by Kentico version is 31.10.0 running on .NET 10
 
 ## Running the sandbox locally
 
@@ -18,7 +18,7 @@ If you need to test something in the SaaS environment, first download this proje
 
    ![Clone repo](./images/clone.png)
 
-1. Use [xman](https://github.com/Kentico/xperience-by-kentico-manager) to create a blank database matching the version of this repository (see [Description](#description))
+1. Use [xman](https://github.com/Kentico/xperience-by-kentico-manager) to create a blank database matching the version of this repository (see [Description](#description)). If you don't have xman, you can use the [default command](https://docs.kentico.com/documentation/developers-and-admins/installation#installation-createprojectdatabase)
 
    ```ps
    xman i db

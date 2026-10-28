@@ -17,6 +17,7 @@
       <field allowempty="true" column="ContentItemCommonDataVisualBuilderTemplateConfiguration" columnprecision="0" columntype="longtext" enabled="true" guid="0d5a573b-759a-4dd7-a86b-be2ef2f5bac4" system="true" />
       <field allowempty="true" column="ContentItemCommonDataFirstPublishedWhen" columnprecision="7" columntype="datetime" enabled="true" guid="1318327e-9a4c-47e7-be2e-3da0fe99c15e" system="true" />
       <field allowempty="true" column="ContentItemCommonDataLastPublishedWhen" columnprecision="7" columntype="datetime" enabled="true" guid="169ce320-e362-4b70-b4dd-cc055082c254" system="true" />
+      <field allowempty="true" column="ContentItemCommonDataAiProvenance" columnprecision="0" columntype="longtext" enabled="true" guid="201b1fba-6c7c-46e1-badc-077eab8f4df1" system="true" />
       <schema guid="7c7b596d-5b91-40a5-8ded-f2e4757d8e66" name="SEOFields">
         <properties>
           <description>Schema representing SEO fields </description>
