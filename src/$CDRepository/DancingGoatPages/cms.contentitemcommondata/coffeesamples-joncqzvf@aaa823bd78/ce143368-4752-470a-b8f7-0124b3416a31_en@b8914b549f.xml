@@ -12,7 +12,7 @@
   </ContentItemCommonDataContentLanguageID>
   <ContentItemCommonDataGUID>ce143368-4752-470a-b8f7-0124b3416a31</ContentItemCommonDataGUID>
   <ContentItemCommonDataIsLatest>True</ContentItemCommonDataIsLatest>
-  <ContentItemCommonDataLastPublishedWhen>2025-03-26 10:09:48Z</ContentItemCommonDataLastPublishedWhen>
+  <ContentItemCommonDataLastPublishedWhen>2026-10-28 17:13:07Z</ContentItemCommonDataLastPublishedWhen>
   <ContentItemCommonDataVersionStatus>2</ContentItemCommonDataVersionStatus>
   <ContentItemCommonDataVisualBuilderTemplateConfiguration>
 <![CDATA[
@@ -97,10 +97,12 @@
                     {
                       "identifier": "3f67f5fb-bbd0-40d5-868e-83de0acb66b0",
                       "properties": {
-                        "content": "<h2>Our previous batches</h2>"
+                        "content": "<h2>Our previous batches</h2>",
+                        "aiProvenance": null
                       },
                       "fieldIdentifiers": {
-                        "content": "4f5aed1c-e34e-4f77-ba5b-6004d49db07a"
+                        "content": "4f5aed1c-e34e-4f77-ba5b-6004d49db07a",
+                        "aiProvenance": "1ae27886-5294-455c-98f5-bcaca8d99768"
                       }
                     }
                   ]
@@ -195,10 +197,12 @@
                     {
                       "identifier": "2e500b94-5fea-46fe-8bdd-eb020d7d5f3d",
                       "properties": {
-                        "content": "<h2>Love great coffee? So do we.</h2>"
+                        "content": "<h2>Love great coffee? So do we.</h2>",
+                        "aiProvenance": null
                       },
                       "fieldIdentifiers": {
-                        "content": "8b675bdd-ff3e-4fcb-af82-5abdc0641bab"
+                        "content": "8b675bdd-ff3e-4fcb-af82-5abdc0641bab",
+                        "aiProvenance": "49b20323-05a0-488f-8a1f-0e47de1aa860"
                       }
                     }
                   ]
@@ -260,10 +264,12 @@
                     {
                       "identifier": "b229b3d6-8755-4567-85e5-540e8baf21b6",
                       "properties": {
-                        "content": "<h3>Join our list now and get weekly samples from your local cafe in our network.</h3><p>Sign up to get a coupon you can redeem at your nearest Dancing Goat cafe for a coffee sample. Different coffee sample will be waiting for you every week. We'll also make sure you don't miss out on news introducing the new coffees that we add to our store regularly.</p>"
+                        "content": "<h3>Join our list now and get weekly samples from your local cafe in our network.</h3><p>Sign up to get a coupon you can redeem at your nearest Dancing Goat cafe for a coffee sample. Different coffee sample will be waiting for you every week. We'll also make sure you don't miss out on news introducing the new coffees that we add to our store regularly.</p>",
+                        "aiProvenance": null
                       },
                       "fieldIdentifiers": {
-                        "content": "4b1da05e-2a56-4870-9620-99579fe7b4c6"
+                        "content": "4b1da05e-2a56-4870-9620-99579fe7b4c6",
+                        "aiProvenance": "2880497b-e761-4125-9da0-c0b598a68da3"
                       }
                     }
                   ]
@@ -290,20 +296,20 @@
   <ContentItemReferences>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>2fe94e9c-68b0-4202-b18f-49dc7c4d6810</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>d5f287af-0300-41a8-9e83-4591c863a7be</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>4917e8ff-1dcb-4116-8afc-0e2b93937323</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>ce143368-4752-470a-b8f7-0124b3416a31</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
       </ContentItemReferenceSourceCommonDataID>
       <ContentItemReferenceTargetItemID>
-        <CodeName>HarioSkertonHandGrinder-4m1ejy4l</CodeName>
-        <GUID>a9689fb8-e06f-4363-9aa1-b5c1b427a0ee</GUID>
+        <CodeName>BoliviaFincaIllimani-9nut1evb</CodeName>
+        <GUID>38d6115a-a102-4b4c-8f07-cf21ad100a57</GUID>
         <ObjectType>cms.contentitem</ObjectType>
       </ContentItemReferenceTargetItemID>
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>2fe94e9c-68b0-4202-b18f-49dc7c4d6810</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>011d5adb-3e39-426a-ba92-48f59f603496</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>334ecc7b-2669-4430-87e5-47aa789260cf</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>ce143368-4752-470a-b8f7-0124b3416a31</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
@@ -316,20 +322,20 @@
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>2fe94e9c-68b0-4202-b18f-49dc7c4d6810</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>f8655ef6-5fc4-48a9-86e6-9e7237c4cf04</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>41267590-2238-4be0-9b44-5ae9552783e4</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>ce143368-4752-470a-b8f7-0124b3416a31</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
       </ContentItemReferenceSourceCommonDataID>
       <ContentItemReferenceTargetItemID>
-        <CodeName>BoliviaFincaIllimani-9nut1evb</CodeName>
-        <GUID>38d6115a-a102-4b4c-8f07-cf21ad100a57</GUID>
+        <CodeName>HarioSkertonHandGrinder-4m1ejy4l</CodeName>
+        <GUID>a9689fb8-e06f-4363-9aa1-b5c1b427a0ee</GUID>
         <ObjectType>cms.contentitem</ObjectType>
       </ContentItemReferenceTargetItemID>
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>b27ccf6b-cd44-45cb-b087-5021dca20a55</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>b1ba35c2-c663-4a18-b6f2-310d4bba7c09</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>42f80624-f0d5-40ca-92b6-c6540b0c2847</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>ce143368-4752-470a-b8f7-0124b3416a31</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
@@ -343,7 +349,7 @@
   </ContentItemReferences>
   <ContentItemObjectReferences>
     <cms.contentitemobjectreference>
-      <ContentItemObjectReferenceGUID>d1927801-8c62-4e62-8c0c-c1602a176b25</ContentItemObjectReferenceGUID>
+      <ContentItemObjectReferenceGUID>3e597657-21ee-4ba7-9c69-5941b62bfd01</ContentItemObjectReferenceGUID>
       <ContentItemObjectReferenceSourceCommonDataID>
         <GUID>ce143368-4752-470a-b8f7-0124b3416a31</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
