@@ -17,6 +17,7 @@ using Kentico.PageBuilder.Web.Mvc;
 using Kentico.Web.Mvc;
 using Kentico.Xperience.Cloud;
 using Kentico.Xperience.Lucene.Core.Store;
+using Kentico.Xperience.ManagementApi;
 using Kentico.Xperience.Mjml;
 
 using Microsoft.AspNetCore.Identity;
@@ -52,6 +53,12 @@ if (builder.Environment.IsQa() ||
     builder.Services.AddKenticoCloud(builder.Configuration);
     builder.Services.AddXperienceCloudSendGrid(builder.Configuration);
     builder.Services.AddXperienceCloudDataProtection(builder.Configuration);
+}
+
+// Management API MCP Server only enabled in local environment
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddKenticoManagementApi(o => o.Secret = "thisisaverysecuresecretforthesandbox");
 }
 
 // Virtual inbox- enabled on local and QA environments only
@@ -127,6 +134,12 @@ if (builder.Environment.IsQa() ||
     builder.Environment.IsProduction())
 {
     app.UseKenticoCloud();
+}
+
+// Management API MCP Server only enabled in local environment
+if (builder.Environment.IsDevelopment())
+{
+    app.UseKenticoManagementApi();
 }
 
 app.UseKentico();

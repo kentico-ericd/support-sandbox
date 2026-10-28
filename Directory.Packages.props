@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageVersion Include="kentico.xperience.admin" Version="31.10.0" />
     <PackageVersion Include="Kentico.Xperience.Lucene" Version="15.0.5" />
+    <PackageVersion Include="Kentico.Xperience.ManagementApi" Version="31.10.0" />
     <PackageVersion Include="Kentico.Xperience.MiniProfiler" Version="3.0.0" />
     <PackageVersion Include="Kentico.Xperience.Labs.VirtualInbox" Version="2.0.0" />
     <PackageVersion Include="Kentico.Xperience.Labs.VirtualInbox.Admin" Version="2.0.0" />
