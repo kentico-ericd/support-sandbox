@@ -1,6 +1,4 @@
-﻿using DancingGoat.Customizations.Search;
-
-using Kentico.Xperience.Lucene.Core.Indexing;
+﻿using Kentico.Xperience.Lucene.Core.Indexing;
 using Kentico.Xperience.Lucene.Core.Search;
 
 using Lucene.Net.Analysis.Standard;
@@ -9,9 +7,9 @@ using Lucene.Net.Util;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace DancingGoat.Controllers;
+namespace DancingGoat.Customizations.Search;
 
-public class SearchController(
+public class ArticleSearchController(
     ILuceneSearchService luceneSearchService,
     ILuceneIndexManager luceneIndexManager) : Controller
 {
@@ -49,7 +47,7 @@ public class SearchController(
             .ToList();
         });
 
-        return View(new ArticleSearchResults { SearchText = searchText, Results = results });
+        return View("~/Customizations/Search/_ArticleSearch.cshtml", new ArticleSearchResults { SearchText = searchText, Results = results });
     }
 
 
