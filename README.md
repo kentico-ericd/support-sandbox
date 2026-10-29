@@ -72,6 +72,7 @@ These are settings, customizations, and integrations that are not present in a s
 - AIRA enabled
 - [Miniprofiler](https://github.com/Kentico/xperience-by-kentico-miniprofiler)
 - [SQL Browser](https://github.com/kentico-ericd/xperience-community-sqlbrowser)
+- [Management API MCP Server](https://docs.kentico.com/documentation/developers-and-admins/api/management-api)
 - Rich text editor configuration for [content fields](/src/Customizations/RichText/CustomRichTextRegistration.cs) and [widgets](/src/Views/Shared/_LandingPageLayout.cshtml#59)
 - [Lucene search](https://github.com/Kentico/xperience-by-kentico-lucene) with [custom indexing strategy](/src/Customizations/Search/ArticleIndexingStrategy.cs) and [live site search](/src/Controllers/SearchController.cs)
 - [Virtual inbox](https://github.com/Kentico/xperience-by-kentico-virtual-inbox) enabled on local and SaaS QA for easy email testing. PROD environment still uses SendGrid for real email sending
