@@ -1,4 +1,6 @@
-﻿using DancingGoat.Models;
+﻿using System.Collections.Generic;
+
+using DancingGoat.Models;
 
 using Kentico.Xperience.Admin.Base.FormAnnotations;
 
@@ -11,5 +13,5 @@ namespace DancingGoat.Commerce;
 public class ProductPromotionSchemaFilter : IReusableFieldSchemasFilter
 {
     /// <inheritdoc/>
-    IEnumerable<string> IReusableFieldSchemasFilter.AllowedSchemaNames => [IProductFields.REUSABLE_FIELD_SCHEMA_NAME];
+    IEnumerable<string> IReusableFieldSchemasFilter.AllowedSchemaNames => new List<string> { IProductFields.REUSABLE_FIELD_SCHEMA_NAME };
 }

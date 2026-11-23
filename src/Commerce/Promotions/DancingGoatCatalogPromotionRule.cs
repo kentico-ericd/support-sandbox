@@ -1,4 +1,7 @@
-﻿using CMS.Commerce;
+﻿using System;
+using System.Linq;
+
+using CMS.Commerce;
 
 using DancingGoat.Commerce;
 
@@ -75,14 +78,14 @@ public sealed class DancingGoatCatalogPromotionRule : CatalogPromotionRule<Danci
 
         var productData = productItem.ProductData;
 
-        bool canApply =
-            (Properties.Scope.Equals(SCOPE_CATEGORIES, StringComparison.InvariantCultureIgnoreCase) && productData.Categories.Intersect(Properties.ProductCategories).Any())
-            || (Properties.Scope.Equals(SCOPE_TAGS, StringComparison.InvariantCultureIgnoreCase) && productData.Tags.Intersect(Properties.ProductTags).Any())
-            || (Properties.Scope.Equals(SCOPE_PRODUCTS, StringComparison.InvariantCultureIgnoreCase) && Properties.Products.Select(x => x.Identifier).Contains(productData.ContentItemGuid));
+        var canApply =
+            Properties.Scope.Equals(SCOPE_CATEGORIES, StringComparison.InvariantCultureIgnoreCase) && productData.Categories.Intersect(Properties.ProductCategories).Any()
+            || Properties.Scope.Equals(SCOPE_TAGS, StringComparison.InvariantCultureIgnoreCase) && productData.Tags.Intersect(Properties.ProductTags).Any()
+            || Properties.Scope.Equals(SCOPE_PRODUCTS, StringComparison.InvariantCultureIgnoreCase) && Properties.Products.Select(x => x.Identifier).Contains(productData.ContentItemGuid);
 
         if (canApply)
         {
-            decimal discountAmount = GetDiscountAmount(productData.UnitPrice);
+            var discountAmount = GetDiscountAmount(productData.UnitPrice);
 
             return new DancingGoatCatalogPromotionCandidate()
             {

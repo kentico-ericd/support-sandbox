@@ -1,4 +1,11 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
 using CMS.Automation;
+
+using Microsoft.Extensions.Logging;
 
 using Samples.DancingGoat;
 
@@ -33,8 +40,8 @@ internal sealed class ContactKeyFieldChangedAutomationTrigger(ILogger<ContactKey
         ContactKeyFieldChangedTriggerData triggerData,
         CancellationToken cancellationToken)
     {
-        string watchedField = properties.WatchedField;
-        bool fires = !string.IsNullOrEmpty(watchedField)
+        var watchedField = properties.WatchedField;
+        var fires = !string.IsNullOrEmpty(watchedField)
             && triggerData.ChangedFields.Contains(watchedField, StringComparer.InvariantCultureIgnoreCase);
 
         logger.LogDebug(

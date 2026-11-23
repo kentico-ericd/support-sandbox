@@ -1,4 +1,6 @@
-﻿using CMS.Automation;
+﻿using System.Collections.Generic;
+
+using CMS.Automation;
 using CMS.Membership;
 
 using Kentico.Xperience.Admin.Base.FormAnnotations;

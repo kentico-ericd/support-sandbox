@@ -1,4 +1,7 @@
-﻿namespace DancingGoat.Helpers.Generators
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace DancingGoat.Helpers.Generators
 {
     /// <summary>
     /// Contains methods for generating forbidden passwords.
@@ -33,7 +36,7 @@
                 }
                 select forbiddenPassword;
 
-            return [.. forbiddenPasswords];
+            return new HashSet<string>(forbiddenPasswords);
         }
     }
 }

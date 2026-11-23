@@ -1,4 +1,7 @@
-﻿using CMS;
+﻿using System;
+using System.Collections.Generic;
+
+using CMS;
 using CMS.Activities;
 using CMS.Base;
 using CMS.Commerce;
@@ -16,6 +19,7 @@ using DancingGoat.Helpers.Generator;
 
 using Kentico.Web.Mvc;
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using Samples.DancingGoat;
@@ -141,8 +145,7 @@ namespace Samples.DancingGoat
         private static void RegisterProfileIdentityCollector(ModuleInitParameters parameters)
         {
             var profileInfoProvider = parameters.Services.GetRequiredService<IInfoProvider<ProfileInfo>>();
-
-            _ = parameters.Services.GetRequiredService<IInfoProvider<ProfileReferenceInfo>>();
+            var profileReferenceInfoProvider = parameters.Services.GetRequiredService<IInfoProvider<ProfileReferenceInfo>>();
             var contactInfoProvider = parameters.Services.GetRequiredService<IInfoProvider<ContactInfo>>();
             var customerInfoProvider = parameters.Services.GetRequiredService<IInfoProvider<CustomerInfo>>();
             var memberInfoProvider = parameters.Services.GetRequiredService<IMemberInfoProvider>();
@@ -209,25 +212,28 @@ namespace Samples.DancingGoat
         }
 
 
-        private static void RegisterConsentRevokeHandler(ModuleInitParameters parameters) => DataProtectionEvents.RevokeConsentAgreement.Execute += (sender, args) =>
-                                                                                                      {
-                                                                                                          if (args.Consent.ConsentName.Equals(TrackingConsentGenerator.CONSENT_NAME, StringComparison.Ordinal))
-                                                                                                          {
-                                                                                                              DeleteContactActivities(args.Contact, parameters);
+        private static void RegisterConsentRevokeHandler(ModuleInitParameters parameters)
+        {
+            DataProtectionEvents.RevokeConsentAgreement.Execute += (sender, args) =>
+            {
+                if (args.Consent.ConsentName.Equals(TrackingConsentGenerator.CONSENT_NAME, StringComparison.Ordinal))
+                {
+                    DeleteContactActivities(args.Contact, parameters);
 
-                                                                                                              // Remove cookies used for contact tracking
-                                                                                                              var cookieAccessor = parameters.Services.GetRequiredService<ICookieAccessor>();
+                    // Remove cookies used for contact tracking
+                    var cookieAccessor = parameters.Services.GetRequiredService<ICookieAccessor>();
 
 #pragma warning disable CS0618 // CookieName is obsolete
-                                                                                                              cookieAccessor.Remove(CookieName.CurrentContact);
-                                                                                                              cookieAccessor.Remove(CookieName.CrossSiteContact);
+                    cookieAccessor.Remove(CookieName.CurrentContact);
+                    cookieAccessor.Remove(CookieName.CrossSiteContact);
 #pragma warning restore CS0618 // CookieName is obsolete
 
 
-                                                                                                              // Set the cookie level to default
-                                                                                                              var cookieLevelProvider = parameters.Services.GetRequiredService<ICurrentCookieLevelProvider>();
-                                                                                                              cookieLevelProvider.SetCurrentCookieLevel(cookieLevelProvider.GetDefaultCookieLevel());
-                                                                                                          }
-                                                                                                      };
+                    // Set the cookie level to default
+                    var cookieLevelProvider = parameters.Services.GetRequiredService<ICurrentCookieLevelProvider>();
+                    cookieLevelProvider.SetCurrentCookieLevel(cookieLevelProvider.GetDefaultCookieLevel());
+                }
+            };
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using CMS.Base;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.Base;
 using CMS.ContentEngine;
 
 using DancingGoat.Models;
@@ -18,7 +22,10 @@ internal sealed class ProductSkuValidationEventHandler :
     /// <summary>
     /// Initializes a new instance of the <see cref="ProductSkuValidationEventHandler"/> class.
     /// </summary>
-    public ProductSkuValidationEventHandler(ProductSkuValidator productSkuValidator) => this.productSkuValidator = productSkuValidator;
+    public ProductSkuValidationEventHandler(ProductSkuValidator productSkuValidator)
+    {
+        this.productSkuValidator = productSkuValidator;
+    }
 
 
     /// <summary>
@@ -37,12 +44,12 @@ internal sealed class ProductSkuValidationEventHandler :
 
     private async Task ValidateUniqueSku(ContentItemData contentItemData, int? contentItemId, CancellationToken cancellationToken)
     {
-        if (!contentItemData.TryGetValue<string>(nameof(IProductSKU.ProductSKUCode), out string? skuCode))
+        if (!contentItemData.TryGetValue<string>(nameof(IProductSKU.ProductSKUCode), out var skuCode))
         {
             return;
         }
 
-        int? duplicatedContentItemIdentifier = await productSkuValidator.GetCollidingContentItem(skuCode, contentItemId, cancellationToken);
+        var duplicatedContentItemIdentifier = await productSkuValidator.GetCollidingContentItem(skuCode, contentItemId, cancellationToken);
         if (duplicatedContentItemIdentifier != null)
         {
             throw new InvalidOperationException($"The SKU code '{skuCode}' is already used by the content item '{duplicatedContentItemIdentifier}'.");

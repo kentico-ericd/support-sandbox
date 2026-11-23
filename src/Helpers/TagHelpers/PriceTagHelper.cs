@@ -1,4 +1,6 @@
-﻿using CMS.Commerce;
+﻿using System.Threading.Tasks;
+
+using CMS.Commerce;
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -10,15 +12,18 @@ public class PriceTagHelper : TagHelper
     private readonly IPriceFormatter priceFormatter;
 
 
-    public PriceTagHelper(IPriceFormatter priceFormatter) => this.priceFormatter = priceFormatter;
+    public PriceTagHelper(IPriceFormatter priceFormatter)
+    {
+        this.priceFormatter = priceFormatter;
+    }
 
 
-    public override void Process(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "price";
-        string content = output.GetChildContentAsync().Result.GetContent();
+        var content = (await output.GetChildContentAsync()).GetContent();
 
-        if (decimal.TryParse(content, out decimal amount))
+        if (decimal.TryParse(content, out var amount))
         {
             output.Content.SetContent(priceFormatter.Format(amount, new PriceFormatContext()));
         }

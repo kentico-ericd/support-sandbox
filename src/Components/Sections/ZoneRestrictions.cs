@@ -1,4 +1,7 @@
-﻿using DancingGoat.Widgets;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using DancingGoat.Widgets;
 
 using Kentico.PageBuilder.Web.Mvc;
 
@@ -48,8 +51,11 @@ namespace DancingGoat.Sections
         }
 
 
-        private static IEnumerable<string> GetWidgetsIdentifiers() => new Kentico.Builder.Web.Mvc.ComponentDefinitionProvider<WidgetDefinition>()
+        private static IEnumerable<string> GetWidgetsIdentifiers()
+        {
+            return new Kentico.Builder.Web.Mvc.ComponentDefinitionProvider<WidgetDefinition>()
                    .GetAll()
                    .Select(definition => definition.Identifier);
+        }
     }
 }

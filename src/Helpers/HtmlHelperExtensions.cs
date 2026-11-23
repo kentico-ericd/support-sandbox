@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Linq.Expressions;
 
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Localization;
@@ -17,14 +18,21 @@ internal static class HtmlHelperExtensions
     /// <param name="expression">An expression that identifies the object that contains the displayed properties.</param>
     /// <param name="explanationText">An explanation text describing usage of the rendered field.</param>
     /// <param name="disabled">Indicates that field has to be disabled.</param>
-    public static IHtmlContent ValidatedEditorFor<TModel, TValue>(this IHtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, LocalizedHtmlString explanationText = null, bool disabled = false)
+    /// <param name="includeStorageAttribute">Indicates whether the rendered input is decorated with a "data-storage" attribute identifying the field. Disable for sensitive fields such as passwords.</param>
+    public static IHtmlContent ValidatedEditorFor<TModel, TValue>(this IHtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, LocalizedHtmlString explanationText = null, bool disabled = false, bool includeStorageAttribute = true)
     {
         var label = html.LabelFor(expression);
 
-        var additionalViewData = new { htmlAttributes = new { data_storage = $"{GetModelName(html)}_{expression.GetExpressionText()}" } };
-        var disabledAdditionalViewData = new { htmlAttributes = new { disabled = "disabled" } };
+        object editorViewData = null;
+        if (disabled)
+        {
+            editorViewData = new { htmlAttributes = new { disabled = "disabled" } };
+        }
+        else if (includeStorageAttribute)
+        {
+            editorViewData = new { htmlAttributes = new { data_storage = $"{GetModelName(html)}_{expression.GetExpressionText()}" } };
+        }
 
-        object editorViewData = disabled ? disabledAdditionalViewData : additionalViewData;
         var editor = html.EditorFor(expression, editorViewData);
         var message = html.ValidationMessageFor(expression);
         IHtmlContent explanationTextHtml = HtmlString.Empty;
@@ -44,12 +52,15 @@ internal static class HtmlHelperExtensions
     <div class=""form-group-input"">{1}
        {2}
     </div>
-    <div class=""message message-error error-label"">{3}</div>
+    <div class=""error-label"">{3}</div>
 </div>", label, editor, explanationTextHtml, message);
 
         return generatedHtml;
     }
 
 
-    private static string GetModelName<TModel>(IHtmlHelper<TModel> html) => html.GetType().GenericTypeArguments[0].Name.Replace("ViewModel", "");
+    private static string GetModelName<TModel>(IHtmlHelper<TModel> html)
+    {
+        return html.GetType().GenericTypeArguments[0].Name.Replace("ViewModel", "");
+    }
 }

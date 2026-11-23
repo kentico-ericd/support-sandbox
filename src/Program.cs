@@ -2,10 +2,10 @@
 using CMS.IO;
 
 using DancingGoat;
-using DancingGoat.Customizations.Search;
 using DancingGoat.EmailComponents;
 using DancingGoat.Helpers.Generators;
 using DancingGoat.Models;
+using DancingGoat.Customizations.Search;
 
 using Kentico.Activities.Web.Mvc;
 using Kentico.Commerce.Web.Mvc;
@@ -15,10 +15,10 @@ using Kentico.Membership;
 using Kentico.OnlineMarketing.Web.Mvc;
 using Kentico.PageBuilder.Web.Mvc;
 using Kentico.Web.Mvc;
+using Kentico.Xperience.Mjml;
 using Kentico.Xperience.Cloud;
 using Kentico.Xperience.Lucene.Core.Store;
 using Kentico.Xperience.ManagementApi;
-using Kentico.Xperience.Mjml;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -81,12 +81,13 @@ builder.Services.AddKentico(features =>
     {
         DefaultSectionIdentifier = ComponentIdentifiers.SINGLE_COLUMN_SECTION,
         RegisterDefaultSection = false,
-        ContentTypeNames =
-        [
+        ContentTypeNames = new[]
+        {
             LandingPage.CONTENT_TYPE_NAME,
             ContactsPage.CONTENT_TYPE_NAME,
-            ArticlePage.CONTENT_TYPE_NAME
-        ]
+            ArticlePage.CONTENT_TYPE_NAME,
+            HomePage.CONTENT_TYPE_NAME
+        }
     });
 
     features.UseEmailBuilder();
@@ -104,7 +105,10 @@ builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true
 builder.Services.AddLocalization()
     .AddControllersWithViews()
     .AddViewLocalization()
-    .AddDataAnnotationsLocalization(options => options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResources)));
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResources));
+    });
 
 builder.Services.AddDancingGoatServices();
 builder.Services.AddSingleton<IEmailActivityTrackingEvaluator, EmailActivityTrackingEvaluator>();
@@ -117,15 +121,21 @@ if (builder.Environment.IsDevelopment())
     builder.Services.Configure<UrlResolveOptions>(options => options.UseSSL = false);
 }
 
+builder.AddDancingGoatManagementApi();
+
 var app = builder.Build();
 
 app.InitKentico();
+
+app.UseKenticoCloudOriginProtection();
 
 app.UseStaticFiles();
 
 app.UseCookiePolicy();
 
 app.UseAuthentication();
+
+app.UseDancingGoatManagementApi();
 
 if (builder.Environment.IsQa() ||
     builder.Environment.IsUat() ||
@@ -214,7 +224,7 @@ static void ConfigureMembershipServices(IServiceCollection services)
         {
             var factory = ctx.HttpContext.RequestServices.GetRequiredService<IUrlHelperFactory>();
             var urlHelper = factory.GetUrlHelper(new ActionContext(ctx.HttpContext, new RouteData(ctx.HttpContext.Request.RouteValues), new ActionDescriptor()));
-            string url = urlHelper.Action("Login", "Account") + new Uri(ctx.RedirectUri).Query;
+            var url = urlHelper.Action("Login", "Account") + new Uri(ctx.RedirectUri).Query;
 
             ctx.Response.Redirect(url);
 

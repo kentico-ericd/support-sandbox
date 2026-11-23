@@ -12,7 +12,7 @@
   </ContentItemCommonDataContentLanguageID>
   <ContentItemCommonDataGUID>0c56d772-eda5-43fe-baeb-a1268c15b7fd</ContentItemCommonDataGUID>
   <ContentItemCommonDataIsLatest>True</ContentItemCommonDataIsLatest>
-  <ContentItemCommonDataLastPublishedWhen>2025-03-25 11:54:37Z</ContentItemCommonDataLastPublishedWhen>
+  <ContentItemCommonDataLastPublishedWhen>2026-08-12 08:05:37Z</ContentItemCommonDataLastPublishedWhen>
   <ContentItemCommonDataVersionStatus>2</ContentItemCommonDataVersionStatus>
   <ContentItemCommonDataVisualBuilderTemplateConfiguration>
 <![CDATA[
@@ -24,15 +24,15 @@
 ]]>
   </ContentItemCommonDataVisualBuilderTemplateConfiguration>
   <ProductFieldCategory />
-  <SEOFieldsAllowSearchIndexing>True</SEOFieldsAllowSearchIndexing>
   <SEOFieldsDescription>
     <![CDATA[Roasting coffee beans can take from 6 to 13 minutes. Different roasting times produce varying caffeine concentrations and flavors.]]>
   </SEOFieldsDescription>
+  <SEOFieldsNoIndex>False</SEOFieldsNoIndex>
   <SEOFieldsTitle>On Roasts - Dancing Goat</SEOFieldsTitle>
   <ContentItemReferences>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>04b5735c-f3b6-4dba-af49-1c748e952820</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>fc0b1009-843c-461a-b8c4-7d364a3a7875</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>c7a2fc8d-494f-4935-9d61-21a42dd467e7</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>0c56d772-eda5-43fe-baeb-a1268c15b7fd</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
@@ -45,7 +45,7 @@
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>49eea67f-5a3a-4a0a-a4a4-42cf4e2117c0</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>3d84d8ab-d7d3-43f9-9403-128c76423bfd</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>bf2548a5-077c-4465-9b29-05c3d120afb4</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>0c56d772-eda5-43fe-baeb-a1268c15b7fd</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
@@ -58,7 +58,7 @@
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>49eea67f-5a3a-4a0a-a4a4-42cf4e2117c0</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>cd38cf31-ea2b-4104-ad0b-813aafe76b6b</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>ffbc03ef-b6d5-44d4-918d-2ed6ac4b5ac4</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>0c56d772-eda5-43fe-baeb-a1268c15b7fd</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>
@@ -71,7 +71,7 @@
     </cms.contentitemreference>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>49eea67f-5a3a-4a0a-a4a4-42cf4e2117c0</ContentItemReferenceGroupGUID>
-      <ContentItemReferenceGUID>ab23d545-5f34-45e5-b9f0-fe3fc1e24bc9</ContentItemReferenceGUID>
+      <ContentItemReferenceGUID>fdf054ac-928d-4b88-9070-a13f11a8e349</ContentItemReferenceGUID>
       <ContentItemReferenceSourceCommonDataID>
         <GUID>0c56d772-eda5-43fe-baeb-a1268c15b7fd</GUID>
         <ObjectType>cms.contentitemcommondata</ObjectType>

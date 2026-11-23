@@ -1,29 +1,29 @@
-﻿using CMS.Commerce;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.Commerce;
 using CMS.ContentEngine;
 
 using DancingGoat.Models;
 
 using Kentico.Content.Web.Mvc;
 using Kentico.Content.Web.Mvc.Routing;
-using Kentico.Membership;
-
-using Microsoft.AspNetCore.Identity;
 
 namespace DancingGoat.Commerce;
 
 public sealed class CalculationService
 {
-    private readonly IHttpContextAccessor httpContextAccessor;
+    private readonly BuyerIdentifierRetriever buyerIdentifierRetriever;
     private readonly IPriceCalculationService<DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult> priceCalculationService;
-    private readonly CustomerDataRetriever customerDataRetriever;
     private readonly IPreferredLanguageRetriever preferredLanguageRetriever;
 
 
-    public CalculationService(IHttpContextAccessor httpContextAccessor, IPriceCalculationService<DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult> priceCalculationService, CustomerDataRetriever customerDataRetriever, IWebPageDataContextRetriever webPageDataContextRetriever, IPreferredLanguageRetriever preferredLanguageRetriever)
+    public CalculationService(BuyerIdentifierRetriever buyerIdentifierRetriever, IPriceCalculationService<DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult> priceCalculationService, IWebPageDataContextRetriever webPageDataContextRetriever, IPreferredLanguageRetriever preferredLanguageRetriever)
     {
-        this.httpContextAccessor = httpContextAccessor;
+        this.buyerIdentifierRetriever = buyerIdentifierRetriever;
         this.priceCalculationService = priceCalculationService;
-        this.customerDataRetriever = customerDataRetriever;
         this.preferredLanguageRetriever = preferredLanguageRetriever;
     }
 
@@ -31,13 +31,19 @@ public sealed class CalculationService
     /// <summary>
     /// Calculate total price of all items within shopping cart with specified products with no shipping specified.
     /// </summary>
-    public async Task<DancingGoatPriceCalculationResult> CalculateShoppingCart(ShoppingCartDataModel shoppingCartData, CancellationToken cancellationToken) => await Calculate(shoppingCartData, PriceCalculationMode.ShoppingCart, 0, 0, null, cancellationToken);
+    public async Task<DancingGoatPriceCalculationResult> CalculateShoppingCart(ShoppingCartDataModel shoppingCartData, CancellationToken cancellationToken)
+    {
+        return await Calculate(shoppingCartData, PriceCalculationMode.ShoppingCart, 0, 0, null, cancellationToken);
+    }
 
 
     /// <summary>
     /// Calculate total price of all items within shopping cart with specified products with no shipping specified.
     /// </summary>
-    public async Task<DancingGoatPriceCalculationResult> CalculateCatalogPrices(ShoppingCartDataModel shoppingCartData, CancellationToken cancellationToken) => await Calculate(shoppingCartData, PriceCalculationMode.Catalog, 0, 0, null, cancellationToken);
+    public async Task<DancingGoatPriceCalculationResult> CalculateCatalogPrices(ShoppingCartDataModel shoppingCartData, CancellationToken cancellationToken)
+    {
+        return await Calculate(shoppingCartData, PriceCalculationMode.Catalog, 0, 0, null, cancellationToken);
+    }
 
 
     /// <summary>
@@ -65,10 +71,7 @@ public sealed class CalculationService
     /// </summary>
     public async Task<DancingGoatPriceCalculationResult> Calculate(ShoppingCartDataModel shoppingCartData, PriceCalculationMode mode, int shippingMethodId, int paymentMethodId, CustomerAddressViewModel customerAddress, CancellationToken cancellationToken)
     {
-        var userManager = httpContextAccessor.HttpContext.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
-
-        var user = await userManager.GetUserAsync(httpContextAccessor.HttpContext?.User);
-        int memberId = (user != null) ? user.Id : 0;
+        var buyerIdentifier = await buyerIdentifierRetriever.GetCurrentBuyerIdentifier();
 
         var calculationRequest = new DancingGoatPriceCalculationRequest
         {
@@ -80,7 +83,7 @@ public sealed class CalculationService
             ShippingMethodId = shippingMethodId,
             PaymentMethodId = paymentMethodId,
             BillingAddress = GetCustomerData(customerAddress),
-            BuyerIdentifier = BuyerIdentifier.FromMemberId(memberId),
+            BuyerIdentifier = buyerIdentifier,
             LanguageName = preferredLanguageRetriever.Get(),
             Mode = mode,
             CouponCodes = shoppingCartData.CouponCodes
@@ -90,13 +93,16 @@ public sealed class CalculationService
     }
 
 
-    private static AddressDto GetCustomerData(CustomerAddressViewModel customerAddress) => customerAddress == null ? null : new AddressDto()
+    private static AddressDto GetCustomerData(CustomerAddressViewModel customerAddress)
     {
-        Line1 = customerAddress.Line1,
-        Line2 = customerAddress.Line2,
-        City = customerAddress.City,
-        Zip = customerAddress.PostalCode,
-        CountryID = int.TryParse(customerAddress.CountryId, out int countryId) ? countryId : 0,
-        StateID = int.TryParse(customerAddress.StateId, out int stateId) ? stateId : 0,
-    };
+        return customerAddress == null ? null : new AddressDto()
+        {
+            Line1 = customerAddress.Line1,
+            Line2 = customerAddress.Line2,
+            City = customerAddress.City,
+            Zip = customerAddress.PostalCode,
+            CountryID = int.TryParse(customerAddress.CountryId, out var countryId) ? countryId : 0,
+            StateID = int.TryParse(customerAddress.StateId, out var stateId) ? stateId : 0,
+        };
+    }
 }

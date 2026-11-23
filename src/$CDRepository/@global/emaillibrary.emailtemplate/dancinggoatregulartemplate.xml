@@ -87,7 +87,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px;" class="wrapper">
                 <tr>
                     <td align="center" valign="top" style="padding: 15px 0;" class="logo">
-                      <img alt="Logo" src="{% HTMLEncode(BannerLogo[0].Data.ImageFile.Url) |(identity)GlobalAdministrator|(hash)014fb1465cf521f1a6ddd7d049fae43520f4c911e822e7fbc4741ea461ad590e%}" width="240" height="60" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" border="0">
+                      <img alt="Logo" src="{% HTMLEncode(BannerLogo[0].Data.ImageFile.Url) |(identity)GlobalAdministrator|(hash)03046e20322de71f572ad3acbd202239c57d61f6fe26fbe1bfd67cbcc186894f%}" width="240" height="60" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" border="0">
                     </td>
                 </tr>
             </table>
@@ -108,12 +108,12 @@
     </tr>
     <tr>
 		<td align="center" style="padding: 0px 15px 0px 15px;">
-          <p class="footer-text">
+          <p class="footer-text" style="text-align: center; font-size: 0;">
             {% foreach (link in SocialPlatforms) { %}
-              <a class="followus-link" href="{% HTMLEncode(link.Data.SocialLinkUrl) %}" target="_blank" style="color: #B49669;">
-                <img src="{% HTMLEncode(link.Data.SocialLinkIcon[0].Data.ImageFile.Url) %}" alt="{% HTMLEncode(link.Data.SocialLinkTitle) %}" title="{% HTMLEncode(link.Data.SocialLinkTitle) %}" loading="lazy">
+              <a class="followus-link" href="{% HTMLEncode(link.Data.SocialLinkUrl) %}" target="_blank" style="color: #B49669; text-decoration: none;">
+                <img src="{% HTMLEncode(link.Data.SocialLinkIcon[0].Data.ImageFile.Url) %}" alt="{% HTMLEncode(link.Data.SocialLinkTitle) %}" title="{% HTMLEncode(link.Data.SocialLinkTitle) %}" width="40" height="40" hspace="6" style="display: inline-block; vertical-align: middle; margin: 0 6px; width: 40px; height: 40px;" loading="lazy">
               </a>
-            {%} |(identity)GlobalAdministrator|(hash)da601eb9aee6a5818b5765ab27ca2d113d2db35697d06a1a0011fde3a5381fea%}
+            {%} |(identity)GlobalAdministrator|(hash)961b95e330bc73817829d0635182bb1c2bb86321fb797180c3692951858eb21d%}
           </p>
 		</td>
 	</tr>

@@ -1,4 +1,8 @@
-﻿using CMS.DataEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using CMS.DataEngine;
 using CMS.Websites;
 
 using DancingGoat;
@@ -21,7 +25,10 @@ namespace DancingGoat.Controllers
         private readonly IContentRetriever contentRetriever;
 
 
-        public DancingGoatArticleController(IContentRetriever contentRetriever) => this.contentRetriever = contentRetriever;
+        public DancingGoatArticleController(IContentRetriever contentRetriever)
+        {
+            this.contentRetriever = contentRetriever;
+        }
 
 
         public async Task<IActionResult> Index()
@@ -44,6 +51,8 @@ namespace DancingGoat.Controllers
         {
             var article = await contentRetriever.RetrieveCurrentPage<ArticlePage>(
                 new RetrieveCurrentPageParameters { IncludeSecuredItems = true, LinkedItemsMaxLevel = 3 },
+                query => query.WithAiProvenance(),
+                new RetrievalCacheSettings("WithAiProvenance"),
                 HttpContext.RequestAborted
             );
 
@@ -58,7 +67,9 @@ namespace DancingGoat.Controllers
         }
 
 
-        private async Task<IEnumerable<ArticlePage>> GetArticles(ArticlesSection articlesSection) => await contentRetriever.RetrievePages<ArticlePage>(
+        private async Task<IEnumerable<ArticlePage>> GetArticles(ArticlesSection articlesSection)
+        {
+            return await contentRetriever.RetrievePages<ArticlePage>(
                 new RetrievePagesParameters
                 {
                     PathMatch = PathMatch.Children(articlesSection.SystemFields.WebPageItemTreePath),
@@ -69,5 +80,6 @@ namespace DancingGoat.Controllers
                 new RetrievalCacheSettings($"OrderBy_{nameof(ArticlePage.ArticlePagePublishDate)}_{nameof(OrderByColumn.Desc)}"),
                 HttpContext.RequestAborted
             );
+        }
     }
 }

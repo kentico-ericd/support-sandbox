@@ -1,4 +1,6 @@
-﻿using DancingGoat;
+﻿using System.Threading.Tasks;
+
+using DancingGoat;
 using DancingGoat.Controllers;
 using DancingGoat.Models;
 
@@ -16,7 +18,10 @@ namespace DancingGoat.Controllers
     {
         private readonly IContentRetriever contentRetriever;
 
-        public DancingGoatLandingPageController(IContentRetriever contentRetriever) => this.contentRetriever = contentRetriever;
+        public DancingGoatLandingPageController(IContentRetriever contentRetriever)
+        {
+            this.contentRetriever = contentRetriever;
+        }
 
         public async Task<IActionResult> Index()
         {

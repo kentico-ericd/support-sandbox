@@ -1,4 +1,6 @@
-﻿using CMS.Activities;
+﻿using System.Collections.Generic;
+
+using CMS.Activities;
 using CMS.Commerce;
 using CMS.DataEngine;
 using CMS.DataProtection;
@@ -66,27 +68,36 @@ namespace Samples.DancingGoat
         /// <returns><see cref="PersonalDataCollectorResult"/> containing personal data.</returns>
         public PersonalDataCollectorResult Collect(IEnumerable<BaseInfo> identities, string outputFormat)
         {
-            using var writer = CreateWriter(outputFormat);
-            var contactDataCollector = new SampleContactDataCollectorCore(activityInfoProvider, countryInfoProvider, stateInfoProvider, consentAgreementInfoProvider, bizFormInfoProvider);
-            contactDataCollector.CollectData(identities, writer);
-
-            var memberDataCollector = new SampleMemberDataCollectorCore();
-            memberDataCollector.CollectData(identities, writer);
-
-            var customerDataCollector = new SampleCustomerDataCollectorCore(customerAddressInfoProvider, countryInfoProvider, stateInfoProvider, orderInfoProvider, orderItemInfoProvider, orderAddressInfoProvider);
-            customerDataCollector.CollectData(identities, writer);
-
-            return new PersonalDataCollectorResult
+            using (var writer = CreateWriter(outputFormat))
             {
-                Text = writer.GetResult()
-            };
+                var contactDataCollector = new SampleContactDataCollectorCore(activityInfoProvider, countryInfoProvider, stateInfoProvider, consentAgreementInfoProvider, bizFormInfoProvider);
+                contactDataCollector.CollectData(identities, writer);
+
+                var memberDataCollector = new SampleMemberDataCollectorCore();
+                memberDataCollector.CollectData(identities, writer);
+
+                var customerDataCollector = new SampleCustomerDataCollectorCore(customerAddressInfoProvider, countryInfoProvider, stateInfoProvider, orderInfoProvider, orderItemInfoProvider, orderAddressInfoProvider);
+                customerDataCollector.CollectData(identities, writer);
+
+                return new PersonalDataCollectorResult
+                {
+                    Text = writer.GetResult()
+                };
+            }
         }
 
 
-        private static IPersonalDataWriter CreateWriter(string outputFormat) => outputFormat.ToLowerInvariant() switch
+        private static IPersonalDataWriter CreateWriter(string outputFormat)
         {
-            PersonalDataFormat.MACHINE_READABLE => new XmlPersonalDataWriter(),
-            _ => new HumanReadablePersonalDataWriter(),
-        };
+            switch (outputFormat.ToLowerInvariant())
+            {
+                case PersonalDataFormat.MACHINE_READABLE:
+                    return new XmlPersonalDataWriter();
+
+                case PersonalDataFormat.HUMAN_READABLE:
+                default:
+                    return new HumanReadablePersonalDataWriter();
+            }
+        }
     }
 }

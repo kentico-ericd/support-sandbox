@@ -1,4 +1,6 @@
-﻿using CMS.Activities;
+﻿using System.Collections.Generic;
+
+using CMS.Activities;
 using CMS.DataEngine;
 using CMS.DataProtection;
 using CMS.Globalization;
@@ -49,21 +51,30 @@ namespace Samples.DancingGoat
         /// <returns><see cref="PersonalDataCollectorResult"/> containing personal data.</returns>
         public PersonalDataCollectorResult Collect(IEnumerable<BaseInfo> identities, string outputFormat)
         {
-            using var writer = CreateWriter(outputFormat);
-            var dataCollector = new SampleContactDataCollectorCore(activityInfoProvider, countryInfoProvider, stateInfoProvider, consentAgreementInfoProvider, bizFormInfoProvider);
-            dataCollector.CollectData(identities, writer);
-
-            return new PersonalDataCollectorResult
+            using (var writer = CreateWriter(outputFormat))
             {
-                Text = writer.GetResult()
-            };
+                var dataCollector = new SampleContactDataCollectorCore(activityInfoProvider, countryInfoProvider, stateInfoProvider, consentAgreementInfoProvider, bizFormInfoProvider);
+                dataCollector.CollectData(identities, writer);
+
+                return new PersonalDataCollectorResult
+                {
+                    Text = writer.GetResult()
+                };
+            }
         }
 
 
-        private IPersonalDataWriter CreateWriter(string outputFormat) => outputFormat.ToLowerInvariant() switch
+        private IPersonalDataWriter CreateWriter(string outputFormat)
         {
-            PersonalDataFormat.MACHINE_READABLE => new XmlPersonalDataWriter(),
-            _ => new HumanReadablePersonalDataWriter(),
-        };
+            switch (outputFormat.ToLowerInvariant())
+            {
+                case PersonalDataFormat.MACHINE_READABLE:
+                    return new XmlPersonalDataWriter();
+
+                case PersonalDataFormat.HUMAN_READABLE:
+                default:
+                    return new HumanReadablePersonalDataWriter();
+            }
+        }
     }
 }

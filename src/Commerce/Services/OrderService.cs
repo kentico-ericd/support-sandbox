@@ -1,4 +1,9 @@
-﻿using CMS.Commerce;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.Commerce;
 using CMS.DataEngine;
 
 using DancingGoat.Models;
@@ -13,15 +18,18 @@ public sealed class OrderService
     private readonly IInfoProvider<ShippingMethodInfo> shippingMethodInfoProvider;
     private readonly IOrderCreationService<OrderData, DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult, AddressDto> orderCreationService;
     private readonly OrderNumberGenerator orderNumberGenerator;
+    private readonly CalculationService calculationService;
 
     public OrderService(
         IInfoProvider<ShippingMethodInfo> shippingMethodInfoProvider,
         IOrderCreationService<OrderData, DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult, AddressDto> orderCreationService,
-        OrderNumberGenerator orderNumberGenerator)
+        OrderNumberGenerator orderNumberGenerator,
+        CalculationService calculationService)
     {
         this.shippingMethodInfoProvider = shippingMethodInfoProvider;
         this.orderCreationService = orderCreationService;
         this.orderNumberGenerator = orderNumberGenerator;
+        this.calculationService = calculationService;
     }
 
 
@@ -32,8 +40,17 @@ public sealed class OrderService
     public async Task<int> CreateOrder(ShoppingCartDataModel shoppingCartData, CustomerViewModel customer, CustomerAddressViewModel billingAddress, ShippingAddressViewModel shippingAddress,
         int memberId, string languageName, int paymentMethodId, int shippingMethodId, decimal expectedShippingPrice, CancellationToken cancellationToken)
     {
-        var shipping = await shippingMethodInfoProvider.GetAsync(shippingMethodId, cancellationToken) ?? throw new InvalidOperationException("Invalid shipping method.");
-        if (expectedShippingPrice < shipping.ShippingMethodPrice)
+        var shipping = (await shippingMethodInfoProvider.GetAsync(shippingMethodId, cancellationToken));
+
+        if (shipping == null)
+        {
+            throw new InvalidOperationException("Invalid shipping method.");
+        }
+
+        // A shipping promotion can reduce the shipping method's price to zero. Comparing the expected price
+        // against the raw shipping method price would reject checkout for a cart that qualifies for the promotion.
+        var calculationResult = await calculationService.Calculate(shoppingCartData, PriceCalculationMode.Checkout, shippingMethodId, paymentMethodId, billingAddress, cancellationToken);
+        if (expectedShippingPrice < calculationResult.ShippingPrice)
         {
             throw new InvalidOperationException("Different shipping price than expected by the customer.");
         }
@@ -55,7 +72,7 @@ public sealed class OrderService
             LanguageName = languageName
         };
 
-        int orderId = await orderCreationService.CreateOrder(orderData, cancellationToken);
+        var orderId = await orderCreationService.CreateOrder(orderData, cancellationToken);
 
         return orderId;
     }
@@ -63,8 +80,8 @@ public sealed class OrderService
 
     private static AddressDto ConvertAddress(CustomerAddressViewModel customerAddress, CustomerViewModel customer)
     {
-        int.TryParse(customerAddress.CountryId, out int countryId);
-        int.TryParse(customerAddress.StateId, out int stateId);
+        int.TryParse(customerAddress.CountryId, out var countryId);
+        int.TryParse(customerAddress.StateId, out var stateId);
 
         return new AddressDto()
         {

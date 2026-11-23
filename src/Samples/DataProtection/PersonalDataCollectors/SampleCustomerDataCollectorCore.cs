@@ -1,4 +1,7 @@
-﻿using CMS.Commerce;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using CMS.Commerce;
 using CMS.DataEngine;
 using CMS.Globalization;
 
@@ -10,16 +13,16 @@ namespace Samples.DancingGoat
     internal class SampleCustomerDataCollectorCore
     {
         // Lists store Tuples of database column names and their corresponding display names.
-        private readonly List<CollectedColumn> customerInfoColumns = [
+        private readonly List<CollectedColumn> customerInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(CustomerInfo.CustomerEmail), "Email"),
             new CollectedColumn(nameof(CustomerInfo.CustomerFirstName), "First name"),
             new CollectedColumn(nameof(CustomerInfo.CustomerLastName), "Last name"),
             new CollectedColumn(nameof(CustomerInfo.CustomerPhone), "Phone"),
             new CollectedColumn(nameof(CustomerInfo.CustomerCreatedWhen), "Created"),
             new CollectedColumn(nameof(CustomerInfo.CustomerGUID), "GUID")
-        ];
+        };
 
-        private readonly List<CollectedColumn> customerAddressInfoColumns = [
+        private readonly List<CollectedColumn> customerAddressInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressFirstName), "First name"),
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressLastName), "Last name"),
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressCompany), "Company"),
@@ -32,9 +35,9 @@ namespace Samples.DancingGoat
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressCountryID), ""),
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressStateID), ""),
             new CollectedColumn(nameof(CustomerAddressInfo.CustomerAddressGUID), "GUID")
-        ];
+        };
 
-        private readonly List<CollectedColumn> orderAddressInfoColumns = [
+        private readonly List<CollectedColumn> orderAddressInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressType), "Address type"),
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressFirstName), "First name"),
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressLastName), "Last name"),
@@ -48,17 +51,17 @@ namespace Samples.DancingGoat
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressCountryID), ""),
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressStateID), ""),
             new CollectedColumn(nameof(OrderAddressInfo.OrderAddressGUID), "GUID")
-        ];
+        };
 
-        private readonly List<CollectedColumn> countryInfoColumns = [
+        private readonly List<CollectedColumn> countryInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(CountryInfo.CountryDisplayName), "Country")
-        ];
+        };
 
-        private readonly List<CollectedColumn> stateInfoColumns = [
+        private readonly List<CollectedColumn> stateInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(StateInfo.StateDisplayName), "State")
-        ];
+        };
 
-        private readonly List<CollectedColumn> orderInfoColumns = [
+        private readonly List<CollectedColumn> orderInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(OrderInfo.OrderNumber), "Order number"),
             new CollectedColumn(nameof(OrderInfo.OrderCreatedWhen), "Created"),
             new CollectedColumn(nameof(OrderInfo.OrderModifiedWhen), "Last modified"),
@@ -70,9 +73,9 @@ namespace Samples.DancingGoat
             new CollectedColumn(nameof(OrderInfo.OrderShippingMethodDisplayName), "Shipping method"),
             new CollectedColumn(nameof(OrderInfo.OrderShippingMethodPrice), "Shipping price"),
             new CollectedColumn(nameof(OrderInfo.OrderGUID), "GUID")
-        ];
+        };
 
-        private readonly List<CollectedColumn> orderItemInfoColumns = [
+        private readonly List<CollectedColumn> orderItemInfoColumns = new List<CollectedColumn> {
             new CollectedColumn(nameof(OrderItemInfo.OrderItemSKU), "SKU"),
             new CollectedColumn(nameof(OrderItemInfo.OrderItemName), "Name"),
             new CollectedColumn(nameof(OrderItemInfo.OrderItemQuantity), "Quantity"),
@@ -81,7 +84,7 @@ namespace Samples.DancingGoat
             new CollectedColumn(nameof(OrderItemInfo.OrderItemTaxRate), "Tax rate"),
             new CollectedColumn(nameof(OrderItemInfo.OrderItemTotalPrice), "Total price"),
             new CollectedColumn(nameof(OrderItemInfo.OrderItemGUID), "GUID")
-        ];
+        };
 
 
         private readonly IInfoProvider<CustomerAddressInfo> customerAddressInfoProvider;
@@ -201,8 +204,8 @@ namespace Samples.DancingGoat
                 writer.WriteStartSection(CustomerAddressInfo.OBJECT_TYPE, "Customer address");
                 writer.WriteBaseInfo(address, customerAddressInfoColumns);
 
-                int countryID = address.CustomerAddressCountryID;
-                int stateID = address.CustomerAddressStateID;
+                var countryID = address.CustomerAddressCountryID;
+                var stateID = address.CustomerAddressStateID;
                 if (countryID != 0)
                 {
                     writer.WriteBaseInfo(countryInfoProvider.Get(countryID), countryInfoColumns);
@@ -251,8 +254,8 @@ namespace Samples.DancingGoat
                 writer.WriteStartSection(OrderAddressInfo.OBJECT_TYPE, "Order address");
                 writer.WriteBaseInfo(address, orderAddressInfoColumns);
 
-                int countryID = address.OrderAddressCountryID;
-                int stateID = address.OrderAddressStateID;
+                var countryID = address.OrderAddressCountryID;
+                var stateID = address.OrderAddressStateID;
                 if (countryID != 0)
                 {
                     writer.WriteBaseInfo(countryInfoProvider.Get(countryID), countryInfoColumns);

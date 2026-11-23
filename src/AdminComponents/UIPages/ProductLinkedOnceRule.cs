@@ -1,4 +1,9 @@
-﻿using CMS.ContentEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using CMS.ContentEngine;
 using CMS.Core;
 
 using DancingGoat.AdminComponents.UIPages;
@@ -56,7 +61,7 @@ public sealed class ProductLinkedOnceRule : ValidationRule<ProductLinkedOnceRule
             return await ValidationResult.FailResult();
         }
 
-        int contentItemId = contentItemFormContext.ItemId;
+        var contentItemId = contentItemFormContext.ItemId;
 
         var identifier = value.First().Identifier;
 

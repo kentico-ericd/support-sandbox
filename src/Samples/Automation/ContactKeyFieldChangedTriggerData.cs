@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using CMS.Automation;
 
 namespace Samples.DancingGoat;

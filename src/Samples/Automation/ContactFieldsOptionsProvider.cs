@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 using CMS.ContactManagement;
 using CMS.Core;
 using CMS.FormEngine;
@@ -39,7 +44,10 @@ internal sealed class ContactFieldsOptionsProvider : IDropDownOptionsProvider
     /// <summary>
     /// Initializes a new instance of the <see cref="ContactFieldsOptionsProvider"/> class.
     /// </summary>
-    public ContactFieldsOptionsProvider(ILocalizationService localizationService) => this.localizationService = localizationService;
+    public ContactFieldsOptionsProvider(ILocalizationService localizationService)
+    {
+        this.localizationService = localizationService;
+    }
 
 
     /// <inheritdoc />

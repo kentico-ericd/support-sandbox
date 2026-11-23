@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -10,15 +11,15 @@ public record CustomerAddressViewModel
 {
     public CustomerAddressViewModel()
     {
-        Countries = [];
-        States = [];
+        Countries = new List<SelectListItem>();
+        States = new List<SelectListItem>();
     }
 
 
     public CustomerAddressViewModel(IEnumerable<SelectListItem> countries)
     {
         Countries = countries;
-        States = [];
+        States = new List<SelectListItem>();
     }
 
 

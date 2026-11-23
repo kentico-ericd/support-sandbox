@@ -1,4 +1,9 @@
-﻿using CMS.CustomerJourneys.Internal;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.CustomerJourneys.Internal;
 using CMS.MacroEngine;
 using CMS.Membership;
 using CMS.Scheduler.Internal;
@@ -98,14 +103,17 @@ namespace DancingGoat.Helpers.Generator
         }
 
 
-        private static string GenerateCodeName(string displayName) => displayName
+        private static string GenerateCodeName(string displayName)
+        {
+            return displayName
                 .Replace(" ", string.Empty)
                 .Replace("-", string.Empty);
+        }
 
 
         private static string GetPageVisitMacroRule(Guid webPageGuid)
         {
-            string rule = $@"{{%Rule(""(Contact.VisitedPage(\""{webPageGuid}\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasVisitedPage\"" ><p n=\""page\""><t>#select page</t><v>{webPageGuid}</v><r>1</r><d>select page</d><vt>pages</vt><tv>0</tv></p></r></rules>"")%}}";
+            var rule = $@"{{%Rule(""(Contact.VisitedPage(\""{webPageGuid}\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasVisitedPage\"" ><p n=\""page\""><t>#select page</t><v>{webPageGuid}</v><r>1</r><d>select page</d><vt>pages</vt><tv>0</tv></p></r></rules>"")%}}";
 
             return AddSecurityParameters(rule);
         }
@@ -113,7 +121,7 @@ namespace DancingGoat.Helpers.Generator
 
         private static string GetFormSubmissionMacroRule(string formName)
         {
-            string rule = $@"{{%Rule(""(Contact.SubmittedForm(\""{formName}\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasSubmittedForm\"" ><p n=\""form\""><t>#form</t><v>{formName}</v><r>1</r><d>form</d><vt>objectcodenames</vt><tv>0</tv></p></r></rules>"")%}}";
+            var rule = $@"{{%Rule(""(Contact.SubmittedForm(\""{formName}\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasSubmittedForm\"" ><p n=\""form\""><t>#form</t><v>{formName}</v><r>1</r><d>form</d><vt>objectcodenames</vt><tv>0</tv></p></r></rules>"")%}}";
 
             return AddSecurityParameters(rule);
         }
@@ -121,7 +129,7 @@ namespace DancingGoat.Helpers.Generator
 
         private static string GetClickOnLinkInEmailMacroRule(Guid emailConfigurationGuid)
         {
-            string rule = $@"{{%Rule(""(Contact.ClickedOnSpecificLinkInEmail(\""{emailConfigurationGuid}\"", \""Contains\"", \""/articles\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasClickedOnSpecificEmailUrl\"" ><p n=\""value\""><t>#enter value</t><v>/articles</v><r>1</r><d>enter value</d><vt>text</vt><tv>0</tv></p><p n=\""op\""><t>contains</t><v>Contains</v><r>1</r><d>select operator</d><vt>text</vt><tv>0</tv></p><p n=\""email\""><t>#select email</t><v>{emailConfigurationGuid}</v><r>1</r><d>select email</d><vt>emails</vt><tv>0</tv></p></r></rules>"")%}}";
+            var rule = $@"{{%Rule(""(Contact.ClickedOnSpecificLinkInEmail(\""{emailConfigurationGuid}\"", \""Contains\"", \""/articles\""))"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasClickedOnSpecificEmailUrl\"" ><p n=\""value\""><t>#enter value</t><v>/articles</v><r>1</r><d>enter value</d><vt>text</vt><tv>0</tv></p><p n=\""op\""><t>contains</t><v>Contains</v><r>1</r><d>select operator</d><vt>text</vt><tv>0</tv></p><p n=\""email\""><t>#select email</t><v>{emailConfigurationGuid}</v><r>1</r><d>select email</d><vt>emails</vt><tv>0</tv></p></r></rules>"")%}}";
 
             return AddSecurityParameters(rule);
         }
@@ -129,13 +137,16 @@ namespace DancingGoat.Helpers.Generator
 
         private static string GetHasBecomeMemberMacroRule()
         {
-            string rule = $@"{{%Rule(""(Contact.HasBecomeMember())"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasBecomeMember\"" ></r></rules>"")%}}";
+            var rule = $@"{{%Rule(""(Contact.HasBecomeMember())"", ""<rules><r pos=\""0\"" par=\""\"" op=\""and\"" /><r pos=\""0\"" par=\""0\"" op=\""and\"" n=\""CMSContactHasBecomeMember\"" ></r></rules>"")%}}";
 
             return AddSecurityParameters(rule);
         }
 
 
-        private static string AddSecurityParameters(string rule) => MacroSecurityProcessor.AddSecurityParameters(rule, MacroIdentityOption.FromUserInfo(UserInfoProvider.AdministratorUser), null);
+        private static string AddSecurityParameters(string rule)
+        {
+            return MacroSecurityProcessor.AddSecurityParameters(rule, MacroIdentityOption.FromUserInfo(UserInfoProvider.AdministratorUser), null);
+        }
 
 
         private record StageTemplate(string DisplayName, int Kpi = 50, string DynamicCondition = null);

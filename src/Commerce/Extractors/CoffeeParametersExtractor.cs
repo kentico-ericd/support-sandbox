@@ -1,4 +1,9 @@
-﻿using CMS.ContentEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.ContentEngine;
 
 using DancingGoat.Models;
 
@@ -9,7 +14,10 @@ namespace DancingGoat.Commerce
     {
         private readonly ITaxonomyRetriever taxonomyRetriever;
 
-        public CoffeeParametersExtractor(ITaxonomyRetriever taxonomyRetriever) => this.taxonomyRetriever = taxonomyRetriever;
+        public CoffeeParametersExtractor(ITaxonomyRetriever taxonomyRetriever)
+        {
+            this.taxonomyRetriever = taxonomyRetriever;
+        }
 
 
         /// <inheritdoc/>
@@ -23,7 +31,7 @@ namespace DancingGoat.Commerce
 
                 foreach (var taxonomy in taxonomies)
                 {
-                    string key = coffee.CoffeeProcessing.Any(x => x.Identifier == taxonomy.Identifier)
+                    var key = coffee.CoffeeProcessing.Any(x => x.Identifier == taxonomy.Identifier)
                         ? "Processing"
                         : "Taste";
                     if (parameters.TryGetValue(key, out string value))

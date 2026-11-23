@@ -20,7 +20,7 @@ public class ArticleSearchController(
     [HttpGet]
     public IActionResult Index(string searchText)
     {
-        var index = luceneIndexManager.GetRequiredIndex("Articles");
+        var index = luceneIndexManager.GetIndex("Articles");
         var query = GetQuery(searchText);
         var combinedQuery = new BooleanQuery
         {

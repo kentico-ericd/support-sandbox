@@ -4,21 +4,29 @@
     Layout = "~/Views/Shared/_DancingGoatLayout.cshtml";
 }
 
-<h2>Results for "@Model.SearchText"</h2>
+<div class="page-head">
+    <div class="wrap">
+        <h1 class="display">Results for "@Model.SearchText"</h1>
+    </div>
+</div>
 
-@if (!Model.Results.Any())
-{
-    <p>No results found.</p>
-}
-else
-{
-    <ul>
-        @foreach (var result in Model.Results)
+<section class="block-tight">
+    <div class="wrap">
+        @if (!Model.Results.Any())
         {
-            <li>
-                <a href="@result.Url">@result.Title</a> [@result.Score]
-                <p>@result.Summary</p>
-            </li>
+            <p>No results found.</p>
         }
-    </ul>
-}
+        else
+        {
+            <ul>
+                @foreach (var result in Model.Results)
+                {
+                    <li>
+                        <a href="@result.Url">@result.Title</a> [@result.Score]
+                        <p>@result.Summary</p>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</section>

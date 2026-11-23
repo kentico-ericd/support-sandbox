@@ -1,4 +1,10 @@
-﻿using CMS.Automation;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.Automation;
 using CMS.ContactManagement;
 using CMS.Core;
 using CMS.DataEngine;
@@ -6,6 +12,8 @@ using CMS.EmailEngine;
 using CMS.Helpers;
 using CMS.Membership;
 using CMS.Notifications;
+
+using Microsoft.Extensions.Logging;
 
 using Samples.DancingGoat;
 
@@ -75,7 +83,7 @@ namespace Samples.DancingGoat
             var roleIds = await GetRoleIds(roleCodeNames, cancellationToken);
             if (roleIds.Count == 0)
             {
-                string configuredRoles = string.Join(", ", roleCodeNames);
+                var configuredRoles = string.Join(", ", roleCodeNames);
                 logger.LogWithIntervalPolicy(
                     LoggingIntervalPolicy.OncePerPeriod($"{IDENTIFIER}|RolesNotFound|{configuredRoles}", TimeSpan.FromDays(1)),
                     l => l.LogWarning("Skipping notification send — none of the configured roles ({Roles}) were found.", configuredRoles));
@@ -85,7 +93,7 @@ namespace Samples.DancingGoat
             var recipientIds = await GetRoleMemberIds(roleIds, cancellationToken);
             if (recipientIds.Count == 0)
             {
-                string configuredRoles = string.Join(", ", roleCodeNames);
+                var configuredRoles = string.Join(", ", roleCodeNames);
                 logger.LogWithIntervalPolicy(
                     LoggingIntervalPolicy.OncePerPeriod($"{IDENTIFIER}|NoMembers|{configuredRoles}", TimeSpan.FromDays(1)),
                     l => l.LogInformation("Automation process notification not sent — the configured roles ({Roles}) have no members.", configuredRoles));
@@ -101,13 +109,13 @@ namespace Samples.DancingGoat
         {
             var cacheSettings = new CacheSettings(5, true, nameof(SendNotificationAutomationAction), nameof(GetRoleIds), string.Join("|", roleCodeNames));
 
-            return await progressiveCache.LoadAsync(async settings =>
+            return await progressiveCache.LoadAsync(async (settings, token) =>
             {
                 var result = await roleProvider
                     .Get()
                     .WhereIn(nameof(RoleInfo.RoleName), roleCodeNames)
                     .Column(nameof(RoleInfo.RoleID))
-                    .GetListResultAsync<int>(cancellationToken: cancellationToken);
+                    .GetListResultAsync<int>(cancellationToken: token);
 
                 if (settings.Cached = result.Count > 0)
                 {
@@ -120,7 +128,7 @@ namespace Samples.DancingGoat
                 }
 
                 return result;
-            }, cacheSettings);
+            }, cacheSettings, cancellationToken);
         }
 
 
@@ -128,13 +136,13 @@ namespace Samples.DancingGoat
         {
             var cacheSettings = new CacheSettings(5, true, nameof(SendNotificationAutomationAction), nameof(GetRoleMemberIds), string.Join("|", roleIds.OrderBy(id => id)));
 
-            return await progressiveCache.LoadAsync(async settings =>
+            return await progressiveCache.LoadAsync(async (settings, token) =>
             {
                 var userIds = await userRoleProvider
                     .Get()
                     .WhereIn(nameof(UserRoleInfo.RoleID), roleIds)
                     .Column(nameof(UserRoleInfo.UserID))
-                    .GetListResultAsync<int>(cancellationToken: cancellationToken);
+                    .GetListResultAsync<int>(cancellationToken: token);
 
                 var result = userIds.Distinct().ToList();
 
@@ -149,7 +157,7 @@ namespace Samples.DancingGoat
                 }
 
                 return result;
-            }, cacheSettings);
+            }, cacheSettings, cancellationToken);
         }
 
 
@@ -168,7 +176,7 @@ namespace Samples.DancingGoat
 
         private async Task SendNotifications(IList<int> recipientIds, AutomationProcessNotificationPlaceholders placeholders, CancellationToken cancellationToken)
         {
-            foreach (int recipientId in recipientIds)
+            foreach (var recipientId in recipientIds)
             {
                 try
                 {

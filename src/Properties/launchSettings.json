@@ -3,7 +3,7 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:52980",
+      "applicationUrl": "http://localhost:17789",
       "sslPort": 0
     }
   },
@@ -15,10 +15,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Sandbox": {
+    "sandbox": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:52980",
+      "applicationUrl": "http://localhost:17789",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

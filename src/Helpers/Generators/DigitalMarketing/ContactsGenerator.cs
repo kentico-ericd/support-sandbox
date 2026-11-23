@@ -1,4 +1,7 @@
-﻿using CMS.ContactManagement;
+﻿using System;
+using System.Collections.Generic;
+
+using CMS.ContactManagement;
 using CMS.DataEngine;
 
 namespace DancingGoat.Helpers.Generator
@@ -36,14 +39,20 @@ namespace DancingGoat.Helpers.Generator
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactsGenerator"/> class.
         /// </summary>
-        public ContactsGenerator(IInfoProvider<ContactInfo> contactInfoProvider) => this.contactInfoProvider = contactInfoProvider;
+        public ContactsGenerator(IInfoProvider<ContactInfo> contactInfoProvider)
+        {
+            this.contactInfoProvider = contactInfoProvider;
+        }
 
 
         /// <summary>
         /// Generates sample contacts. Suitable only for Dancing Goat demo site.
         /// </summary>
         /// <param name="count">Number of contacts to generate.</param>
-        public void Generate(int count = DigitalMarketingGeneratorConstants.DEFAULT_CONTACTS_COUNT) => CreateSampleContacts(count);
+        public void Generate(int count = DigitalMarketingGeneratorConstants.DEFAULT_CONTACTS_COUNT)
+        {
+            CreateSampleContacts(count);
+        }
 
 
         private void CreateSampleContacts(int count)
@@ -54,10 +63,10 @@ namespace DancingGoat.Helpers.Generator
 
             for (int i = 1; i <= count; i++)
             {
-                string firstName = FirstNames[random.Next(FirstNames.Length)];
-                string lastName = LastNames[random.Next(LastNames.Length)];
-                string company = Companies[random.Next(Companies.Length)];
-                string email = $"{firstName.ToLowerInvariant()}.{lastName.ToLowerInvariant()}{i}{DigitalMarketingGeneratorConstants.SAMPLE_CONTACTS_EMAIL_DOMAIN}";
+                var firstName = FirstNames[random.Next(FirstNames.Length)];
+                var lastName = LastNames[random.Next(LastNames.Length)];
+                var company = Companies[random.Next(Companies.Length)];
+                var email = $"{firstName.ToLowerInvariant()}.{lastName.ToLowerInvariant()}{i}{DigitalMarketingGeneratorConstants.SAMPLE_CONTACTS_EMAIL_DOMAIN}";
 
                 var newContact = new ContactInfo()
                 {

@@ -1,16 +1,19 @@
-﻿using System.Net;
-
-using CMS.Websites;
+﻿using System;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 using DancingGoat.Models;
+using DancingGoat.Services;
 
-using Kentico.Content.Web.Mvc;
 using Kentico.Membership;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -20,7 +23,7 @@ namespace DancingGoat.Controllers
     {
         private readonly IStringLocalizer<SharedResources> localizer;
         private readonly ILogger<AccountController> logger;
-        private readonly IContentRetriever contentRetriever;
+        private readonly WebPageUrlProvider webPageUrlProvider;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
@@ -30,20 +33,23 @@ namespace DancingGoat.Controllers
             SignInManager<ApplicationUser> signInManager,
             IStringLocalizer<SharedResources> localizer,
             ILogger<AccountController> logger,
-            IContentRetriever contentRetriever)
+            WebPageUrlProvider webPageUrlProvider)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.localizer = localizer;
             this.logger = logger;
-            this.contentRetriever = contentRetriever;
+            this.webPageUrlProvider = webPageUrlProvider;
         }
 
 
         // GET: Account/Login
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Login() => View();
+        public ActionResult Login()
+        {
+            return View();
+        }
 
 
         // POST: Account/Login
@@ -70,7 +76,7 @@ namespace DancingGoat.Controllers
 
             if (signInResult.Succeeded)
             {
-                string decodedReturnUrl = WebUtility.UrlDecode(returnUrl);
+                var decodedReturnUrl = WebUtility.UrlDecode(returnUrl);
                 if (!string.IsNullOrEmpty(decodedReturnUrl) && Url.IsLocalUrl(decodedReturnUrl))
                 {
                     return Redirect(decodedReturnUrl);
@@ -97,7 +103,10 @@ namespace DancingGoat.Controllers
 
 
         // GET: Account/Register
-        public ActionResult Register() => View();
+        public ActionResult Register()
+        {
+            return View();
+        }
 
 
         // POST: Account/Register
@@ -150,14 +159,7 @@ namespace DancingGoat.Controllers
 
         private async Task<string> GetHomeWebPageUrl(CancellationToken cancellationToken = default)
         {
-            var homePage = (await contentRetriever.RetrievePages<HomePage>(
-                RetrievePagesParameters.Default,
-                query => query.UrlPathColumns(),
-                new RetrievalCacheSettings("UrlPathColumns"),
-                cancellationToken
-            )).FirstOrDefault();
-
-            return homePage.GetUrl().RelativePath;
+            return await webPageUrlProvider.HomePageUrl(cancellationToken: cancellationToken);
         }
     }
 }

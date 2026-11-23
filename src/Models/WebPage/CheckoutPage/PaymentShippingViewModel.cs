@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -8,7 +9,10 @@ namespace DancingGoat.Models;
 
 public sealed record PaymentShippingViewModel
 {
-    public PaymentShippingViewModel() => PaymentMethod = ShippingMethod = string.Empty;
+    public PaymentShippingViewModel()
+    {
+        PaymentMethod = ShippingMethod = string.Empty;
+    }
 
 
     public string PaymentMethod { get; set; }
@@ -16,6 +20,10 @@ public sealed record PaymentShippingViewModel
     public string ShippingMethod { get; set; }
 
     public decimal ShippingPrice { get; set; }
+
+    public decimal OriginalShippingPrice { get; set; }
+
+    public bool HasFreeShippingPromotion { get; set; }
 
     [Display(Name = "Payment method")]
     [Required(ErrorMessage = REQUIRED_FIELD_ERROR_MESSAGE)]
@@ -29,5 +37,8 @@ public sealed record PaymentShippingViewModel
 
     public IEnumerable<SelectListItem> Shippings { get; set; }
 
-    public bool IsEmpty() => string.IsNullOrEmpty(PaymentMethod) && string.IsNullOrEmpty(ShippingMethod);
+    public bool IsEmpty()
+    {
+        return string.IsNullOrEmpty(PaymentMethod) && string.IsNullOrEmpty(ShippingMethod);
+    }
 }

@@ -1,4 +1,8 @@
-﻿using DancingGoat.Models;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+using DancingGoat.Models;
 
 namespace DancingGoat.Commerce
 {
@@ -10,7 +14,10 @@ namespace DancingGoat.Commerce
         private readonly IEnumerable<IProductTypeParametersExtractor> parametersExtractors;
 
 
-        public ProductParametersExtractor(IEnumerable<IProductTypeParametersExtractor> parametersExtractors) => this.parametersExtractors = parametersExtractors;
+        public ProductParametersExtractor(IEnumerable<IProductTypeParametersExtractor> parametersExtractors)
+        {
+            this.parametersExtractors = parametersExtractors;
+        }
 
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using CMS.Commerce;
+﻿using System.Linq;
+
+using CMS.Commerce;
 
 using DancingGoat.Commerce;
 
@@ -35,7 +37,7 @@ public class DancingGoatOrderPromotionRule : OrderPromotionRule<OrderPromotionRu
     /// </returns>
     public override OrderPromotionCandidate GetPromotionCandidate(IPriceCalculationData<DancingGoatPriceCalculationRequest, DancingGoatPriceCalculationResult> calculationData)
     {
-        decimal totalPrice = calculationData.Result.Items.Select(i => i.LineSubtotalAfterLineDiscount).Sum();
+        var totalPrice = calculationData.Result.Items.Select(i => i.LineSubtotalAfterLineDiscount).Sum();
 
         return new OrderPromotionCandidate()
         {

@@ -1,4 +1,7 @@
-﻿using CMS.DataEngine;
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.DataEngine;
 using CMS.Helpers;
 
 namespace DancingGoat.Commerce;
@@ -23,7 +26,7 @@ public sealed class OrderNumberGenerator
     /// </returns>
     public async Task<string> GenerateOrderNumber(CancellationToken cancellationToken)
     {
-        long sequence = await GetNextOrderSequenceNumber(cancellationToken);
+        var sequence = await GetNextOrderSequenceNumber(cancellationToken);
         return $"ORD#{sequence:D6}";
     }
 
@@ -40,7 +43,7 @@ public sealed class OrderNumberGenerator
     /// </returns>
     private static async Task<long> GetNextOrderSequenceNumber(CancellationToken cancellationToken)
     {
-        string query = $"""
+        var query = $"""
                          IF NOT EXISTS (SELECT * FROM sys.sequences WHERE name = N'{SEQUENCE_NAME}')
                          BEGIN
                              CREATE SEQUENCE [{SEQUENCE_NAME}]
@@ -55,7 +58,7 @@ public sealed class OrderNumberGenerator
                          SELECT NEXT VALUE FOR [{SEQUENCE_NAME}];
                      """;
 
-        object scalar = await ConnectionHelper.ExecuteScalarAsync(query,
+        var scalar = await ConnectionHelper.ExecuteScalarAsync(query,
             null,
             QueryTypeEnum.SQLQuery,
             cancellationToken);

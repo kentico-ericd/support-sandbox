@@ -1,4 +1,7 @@
-﻿using CMS.Activities;
+﻿using System;
+using System.Threading.Tasks;
+
+using CMS.Activities;
 using CMS.Base;
 using CMS.ContactManagement;
 using CMS.ContentEngine;
@@ -18,6 +21,8 @@ using DancingGoat.Helpers.Generator;
 using Kentico.Forms.Web.Mvc.Internal;
 using Kentico.Xperience.Admin.Base;
 using Kentico.Xperience.Admin.Base.UIPages;
+
+using Microsoft.Extensions.Logging;
 
 [assembly: UIApplication(SampleDataGeneratorApplication.IDENTIFIER, typeof(SampleDataGeneratorApplication), "sample-data-generator", "Sample data generator", BaseApplicationCategories.CONFIGURATION, Icons.CogwheelSquare, TemplateNames.OVERVIEW)]
 
@@ -173,10 +178,12 @@ namespace DancingGoat.AdminComponents
         }
 
 
-        private static OverviewCard CreateGeneratorCard(string headline, string commandParameter, string content) => new OverviewCard
+        private static OverviewCard CreateGeneratorCard(string headline, string commandParameter, string content)
         {
-            Headline = headline,
-            Actions =
+            return new OverviewCard
+            {
+                Headline = headline,
+                Actions =
                 [
                     new Kentico.Xperience.Admin.Base.Action(ActionType.Command)
                     {
@@ -185,14 +192,15 @@ namespace DancingGoat.AdminComponents
                         ButtonColor = ButtonColor.Secondary
                     }
                 ],
-            Components =
+                Components =
                 [
                     new StringContentCardComponent
                     {
                         Content = content
                     }
                 ]
-        };
+            };
+        }
 
 
         private async Task SetChannelDefaultCookieLevelToEssential(int websiteChannelId)

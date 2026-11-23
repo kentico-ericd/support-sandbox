@@ -1,4 +1,9 @@
-﻿using CMS.ContentEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.ContentEngine;
 
 using DancingGoat.Models;
 
@@ -10,7 +15,10 @@ namespace DancingGoat.Commerce
         private readonly ITaxonomyRetriever taxonomyRetriever;
 
 
-        public ProductManufacturerExtractor(ITaxonomyRetriever taxonomyRetriever) => this.taxonomyRetriever = taxonomyRetriever;
+        public ProductManufacturerExtractor(ITaxonomyRetriever taxonomyRetriever)
+        {
+            this.taxonomyRetriever = taxonomyRetriever;
+        }
 
 
         /// <inheritdoc/>

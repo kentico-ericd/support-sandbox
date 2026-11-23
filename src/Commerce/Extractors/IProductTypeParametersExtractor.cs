@@ -1,4 +1,8 @@
-﻿namespace DancingGoat.Commerce
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace DancingGoat.Commerce
 {
     /// <summary>
     /// Extractor of product parameters based on the product type.
@@ -13,6 +17,6 @@
         /// <param name="product">Product to get parameters from.</param>
         /// <param name="languageName">Language name to use.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        public Task ExtractParameter<T>(IDictionary<string, string> parameters, T product, string languageName, CancellationToken cancellationToken);
+        Task ExtractParameter<T>(IDictionary<string, string> parameters, T product, string languageName, CancellationToken cancellationToken);
     }
 }

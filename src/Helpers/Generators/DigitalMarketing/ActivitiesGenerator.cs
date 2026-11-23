@@ -1,4 +1,9 @@
-﻿using CMS.Activities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using CMS.Activities;
 using CMS.ContactManagement;
 using CMS.ContentEngine;
 using CMS.DataEngine;
@@ -126,20 +131,20 @@ namespace DancingGoat.Helpers.Generator
 
             foreach (var step in journeyTemplate.Steps)
             {
-                int stepContactCount = (int)Math.Ceiling(contactsForCurrentStep.Count * step.Percentage / 100.0);
+                var stepContactCount = (int)Math.Ceiling(contactsForCurrentStep.Count * step.Percentage / 100.0);
                 var contactsForThisStep = contactsForCurrentStep.Take(stepContactCount).ToList();
 
                 var contactContexts = new List<ActivityContext>();
                 foreach (var contact in contactsForThisStep)
                 {
-                    int previousActivityDaysAgo = activities
+                    var previousActivityDaysAgo = activities
                         .Where(a => a.ActivityContactID == contact.ContactID)
                         .OrderByDescending(a => a.ActivityCreated)
                         .Select(a => (DateTime.Now - a.ActivityCreated).Days)
                         .FirstOrDefault();
 
-                    int maxDaysAgo = previousActivityDaysAgo > 0 ? previousActivityDaysAgo : DEFAULT_MAX_DAYS_AGO;
-                    int daysAgo = random.Next(1, maxDaysAgo + 1);
+                    var maxDaysAgo = previousActivityDaysAgo > 0 ? previousActivityDaysAgo : DEFAULT_MAX_DAYS_AGO;
+                    var daysAgo = random.Next(1, maxDaysAgo + 1);
 
                     contactContexts.Add(new ActivityContext(contact, daysAgo, languageId));
                 }
@@ -154,14 +159,17 @@ namespace DancingGoat.Helpers.Generator
         }
 
 
-        private async Task<List<ActivityInfo>> CreateActivitiesForStep(ActivityStepTemplate step, List<ActivityContext> contexts) => step.ActivityType switch
+        private async Task<List<ActivityInfo>> CreateActivitiesForStep(ActivityStepTemplate step, List<ActivityContext> contexts)
         {
-            PredefinedActivityType.PAGE_VISIT => await CreatePageVisitActivitiesFromConfig(step.Config as PageVisitActivityConfig, contexts),
-            PredefinedActivityType.BIZFORM_SUBMIT => await CreateFormSubmitActivitiesFromConfig(step.Config as FormSubmitActivityConfig, contexts),
-            PredefinedActivityType.EMAIL_CLICK => await CreateEmailClickActivitiesFromConfig(step.Config as EmailClickActivityConfig, contexts),
-            PredefinedActivityType.MEMBER_REGISTRATION => CreateMemberRegistrationActivitiesFromConfig(contexts),
-            _ => []
-        };
+            return step.ActivityType switch
+            {
+                PredefinedActivityType.PAGE_VISIT => await CreatePageVisitActivitiesFromConfig(step.Config as PageVisitActivityConfig, contexts),
+                PredefinedActivityType.BIZFORM_SUBMIT => await CreateFormSubmitActivitiesFromConfig(step.Config as FormSubmitActivityConfig, contexts),
+                PredefinedActivityType.EMAIL_CLICK => await CreateEmailClickActivitiesFromConfig(step.Config as EmailClickActivityConfig, contexts),
+                PredefinedActivityType.MEMBER_REGISTRATION => CreateMemberRegistrationActivitiesFromConfig(contexts),
+                _ => []
+            };
+        }
 
 
         private async Task<List<ActivityInfo>> CreatePageVisitActivitiesFromConfig(PageVisitActivityConfig config, List<ActivityContext> contexts)
@@ -260,9 +268,12 @@ namespace DancingGoat.Helpers.Generator
         }
 
 
-        private static List<ActivityInfo> CreateMemberRegistrationActivitiesFromConfig(List<ActivityContext> contexts) => [.. contexts.Select(context => CreateMemberRegistrationActivity(
+        private static List<ActivityInfo> CreateMemberRegistrationActivitiesFromConfig(List<ActivityContext> contexts)
+        {
+            return [.. contexts.Select(context => CreateMemberRegistrationActivity(
                 context.Contact.ContactID,
                 context.DaysAgo))];
+        }
 
 
         private static ActivityInfo CreatePageVisitActivity(
@@ -272,7 +283,9 @@ namespace DancingGoat.Helpers.Generator
             string webPageUrl,
             int daysAgo,
             int languageId,
-            int channelId) => new ActivityInfo
+            int channelId)
+        {
+            return new ActivityInfo
             {
                 ActivityContactID = contactId,
                 ActivityType = PredefinedActivityType.PAGE_VISIT,
@@ -283,6 +296,7 @@ namespace DancingGoat.Helpers.Generator
                 ActivityLanguageID = languageId,
                 ActivityChannelID = channelId
             };
+        }
 
 
         private static ActivityInfo CreateFormSubmitActivity(
@@ -291,7 +305,9 @@ namespace DancingGoat.Helpers.Generator
             string formDisplayName,
             string webPageUrl,
             int daysAgo,
-            int channelId) => new ActivityInfo
+            int channelId)
+        {
+            return new ActivityInfo
             {
                 ActivityContactID = contactId,
                 ActivityType = PredefinedActivityType.BIZFORM_SUBMIT,
@@ -301,6 +317,7 @@ namespace DancingGoat.Helpers.Generator
                 ActivityCreated = DateTime.Now.AddDays(-daysAgo),
                 ActivityChannelID = channelId
             };
+        }
 
 
         private static ActivityInfo CreateEmailUrlClickActivity(
@@ -310,7 +327,9 @@ namespace DancingGoat.Helpers.Generator
             string clickedUrl,
             int daysAgo,
             int languageId,
-            int channelId) => new ActivityInfo
+            int channelId)
+        {
+            return new ActivityInfo
             {
                 ActivityContactID = contactId,
                 ActivityType = PredefinedActivityType.EMAIL_CLICK,
@@ -321,17 +340,21 @@ namespace DancingGoat.Helpers.Generator
                 ActivityLanguageID = languageId,
                 ActivityChannelID = channelId
             };
+        }
 
 
         private static ActivityInfo CreateMemberRegistrationActivity(
             int contactId,
-            int daysAgo) => new ActivityInfo
+            int daysAgo)
+        {
+            return new ActivityInfo
             {
                 ActivityContactID = contactId,
                 ActivityType = PredefinedActivityType.MEMBER_REGISTRATION,
                 ActivityTitle = "Member registration",
                 ActivityCreated = DateTime.Now.AddDays(-daysAgo),
             };
+        }
 
 
         private record ActivityContext(ContactInfo Contact, int DaysAgo, int LanguageId);

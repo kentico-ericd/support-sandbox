@@ -1,4 +1,7 @@
-﻿using CMS.Websites.Routing;
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+using CMS.Websites.Routing;
 
 using DancingGoat;
 using DancingGoat.Controllers;
@@ -39,7 +42,7 @@ namespace DancingGoat.Controllers
                 return Content(localizer["Redirection to the Store page when on the live site."]);
             }
 
-            string storePageUrl = await webPageUrlProvider.StorePageUrl(cancellationToken: cancellationToken);
+            var storePageUrl = await webPageUrlProvider.StorePageUrl(cancellationToken: cancellationToken);
 
             // Redirect to the store page
             return Redirect(storePageUrl);

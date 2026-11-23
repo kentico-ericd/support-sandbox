@@ -1,4 +1,8 @@
-﻿using CMS.DataEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using CMS.DataEngine;
 using CMS.Websites;
 
 using DancingGoat.Models;
@@ -21,7 +25,10 @@ namespace DancingGoat.ViewComponents
 
 
         public ArticlesViewComponent(
-            IContentRetriever contentRetriever) => this.contentRetriever = contentRetriever;
+            IContentRetriever contentRetriever)
+        {
+            this.contentRetriever = contentRetriever;
+        }
 
 
         public async Task<ViewViewComponentResult> InvokeAsync(WebPageRelatedItem articlesSectionItem)
@@ -36,7 +43,7 @@ namespace DancingGoat.ViewComponents
                 return View("~/Components/ViewComponents/Articles/Default.cshtml", ArticlesSectionViewModel.GetViewModel(null, Enumerable.Empty<ArticleViewModel>(), string.Empty));
             }
 
-            var articlePages = await GetArticlePages(articlesSection);
+            IEnumerable<ArticlePage> articlePages = await GetArticlePages(articlesSection);
 
             var models = new List<ArticleViewModel>();
             foreach (var article in articlePages)
@@ -50,7 +57,9 @@ namespace DancingGoat.ViewComponents
             return View("~/Components/ViewComponents/Articles/Default.cshtml", viewModel);
         }
 
-        private async Task<IEnumerable<ArticlePage>> GetArticlePages(ArticlesSection articlesSection) => await contentRetriever.RetrievePages<ArticlePage>(
+        private async Task<IEnumerable<ArticlePage>> GetArticlePages(ArticlesSection articlesSection)
+        {
+            return await contentRetriever.RetrievePages<ArticlePage>(
                 new RetrievePagesParameters
                 {
                     LinkedItemsMaxLevel = 1,
@@ -60,5 +69,6 @@ namespace DancingGoat.ViewComponents
                 new RetrievalCacheSettings($"TopN_{ARTICLES_PER_VIEW}_OrderBy_Desc_{nameof(ArticlePage.ArticlePagePublishDate)}"),
                 HttpContext.RequestAborted
             );
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 
 using CMS.Websites;
 
@@ -24,7 +26,9 @@ namespace DancingGoat.Models
         }
 
 
-        private static RelatedPageViewModel GetViewModelFromArticlePage(ArticlePage articlePage) => new RelatedPageViewModel
+        private static RelatedPageViewModel GetViewModelFromArticlePage(ArticlePage articlePage)
+        {
+            return new RelatedPageViewModel
             (
                 articlePage.ArticleTitle,
                 articlePage.ArticlePageTeaser.FirstOrDefault()?.ImageFile.Url,
@@ -32,11 +36,12 @@ namespace DancingGoat.Models
                 articlePage.ArticlePagePublishDate,
                 articlePage.GetUrl().RelativePath
             );
+        }
 
 
         private static RelatedPageViewModel GetViewModelFromProductPage(ProductPage productPage)
         {
-            var product = productPage.ProductPageProduct.FirstOrDefault();
+            var product = productPage.ProductPageProduct.FirstOrDefault() as IProductFields;
 
             return new RelatedPageViewModel
             (

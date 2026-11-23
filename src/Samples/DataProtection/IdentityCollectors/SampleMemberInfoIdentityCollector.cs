@@ -1,4 +1,7 @@
-﻿using CMS.DataEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using CMS.DataEngine;
 using CMS.DataProtection;
 using CMS.Membership;
 
@@ -16,7 +19,10 @@ namespace Samples.DancingGoat
         /// Initializes a new instance of the <see cref="SampleMemberInfoIdentityCollector"/> class.
         /// </summary>
         /// <param name="memberInfoProvider">Member info provider.</param>
-        public SampleMemberInfoIdentityCollector(IMemberInfoProvider memberInfoProvider) => this.memberInfoProvider = memberInfoProvider;
+        public SampleMemberInfoIdentityCollector(IMemberInfoProvider memberInfoProvider)
+        {
+            this.memberInfoProvider = memberInfoProvider;
+        }
 
 
         /// <summary>
@@ -34,7 +40,7 @@ namespace Samples.DancingGoat
                 return;
             }
 
-            string? dataSubjectIdentifier = value as string;
+            var dataSubjectIdentifier = value as string;
             if (string.IsNullOrWhiteSpace(dataSubjectIdentifier))
             {
                 return;

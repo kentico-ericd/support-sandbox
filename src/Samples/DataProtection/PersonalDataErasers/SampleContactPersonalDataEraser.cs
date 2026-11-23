@@ -1,4 +1,8 @@
-﻿using CMS.Activities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using CMS.Activities;
 using CMS.ContactManagement;
 using CMS.DataEngine;
 using CMS.DataProtection;
@@ -23,7 +27,7 @@ namespace Samples.DancingGoat
         /// <remarks>
         /// GUIDs are used to select only specific forms on the Dancing Goat sample sites.
         /// </remarks>
-        private readonly Dictionary<Guid, string> dancingGoatForms = new()
+        private readonly Dictionary<Guid, string> dancingGoatForms = new Dictionary<Guid, string>
         {
             // DancingGoatCoreContactUsNew
             { new Guid("0081DC2E-47F4-4ACD-80AE-FE39612F379C"), "UserEmail" },
@@ -192,10 +196,10 @@ namespace Samples.DancingGoat
         /// <returns>True if data should be deleted, false otherwise.</returns>
         private static bool ShouldDeleteData(IDictionary<string, object> configuration, string configKey)
         {
-            bool areAllDataToBeDeleted = configuration.TryGetValue("DeleteProfile", out object deleteProfile)
+            var areAllDataToBeDeleted = configuration.TryGetValue("DeleteProfile", out object deleteProfile)
                 && ValidationHelper.GetBoolean(deleteProfile, false);
 
-            bool areSpecificDataToBeDeleted = configuration.TryGetValue(configKey, out object deleteSpecific)
+            var areSpecificDataToBeDeleted = configuration.TryGetValue(configKey, out object deleteSpecific)
                 && ValidationHelper.GetBoolean(deleteSpecific, false);
 
             return areAllDataToBeDeleted || areSpecificDataToBeDeleted;

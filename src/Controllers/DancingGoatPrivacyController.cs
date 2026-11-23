@@ -1,4 +1,8 @@
-﻿using CMS.ContactManagement;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using CMS.ContactManagement;
 using CMS.DataEngine;
 using CMS.DataProtection;
 
@@ -25,14 +29,19 @@ namespace DancingGoat.Controllers
         private readonly IInfoProvider<ConsentInfo> consentInfoProvider;
         private readonly IContentRetriever contentRetriever;
         private readonly IPreferredLanguageRetriever currentLanguageRetriever;
+        private ContactInfo currentContact;
+
 
         private ContactInfo CurrentContact
         {
             get
             {
-                field ??= ContactManagementContext.CurrentContact;
+                if (currentContact == null)
+                {
+                    currentContact = ContactManagementContext.CurrentContact;
+                }
 
-                return field;
+                return currentContact;
             }
         }
 
@@ -91,15 +100,21 @@ namespace DancingGoat.Controllers
         }
 
 
-        private IEnumerable<PrivacyConsentViewModel> GetAgreedConsentsForCurrentContact() => consentAgreementService.GetAgreedConsents(CurrentContact)
+        private IEnumerable<PrivacyConsentViewModel> GetAgreedConsentsForCurrentContact()
+        {
+            return consentAgreementService.GetAgreedConsents(CurrentContact)
                 .Select(consent => new PrivacyConsentViewModel
                 {
                     Name = consent.Name,
                     Title = consent.DisplayName,
                     Text = consent.GetConsentText(currentLanguageRetriever.Get()).ShortText
                 });
+        }
 
 
-        private bool IsDemoEnabled() => consentInfoProvider.Get(TrackingConsentGenerator.CONSENT_NAME) != null;
+        private bool IsDemoEnabled()
+        {
+            return consentInfoProvider.Get(TrackingConsentGenerator.CONSENT_NAME) != null;
+        }
     }
 }

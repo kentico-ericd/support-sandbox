@@ -1,4 +1,7 @@
-﻿using CMS.Commerce;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using CMS.Commerce;
 using CMS.ContactManagement;
 using CMS.ContactManagement.Internal;
 using CMS.DataEngine;
@@ -50,7 +53,7 @@ namespace Samples.DancingGoat
                 return;
             }
 
-            string? identifier = value as string;
+            var identifier = value as string;
             if (string.IsNullOrEmpty(identifier))
             {
                 return;

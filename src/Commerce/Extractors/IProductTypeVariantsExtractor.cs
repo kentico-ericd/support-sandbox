@@ -1,4 +1,6 @@
-﻿namespace DancingGoat.Commerce
+﻿using System.Collections.Generic;
+
+namespace DancingGoat.Commerce
 {
     /// <summary>
     /// Extractor of product variants based on the product type.
@@ -10,7 +12,7 @@
         /// </summary>
         /// <typeparam name="T">Type of the product.</typeparam>
         /// <param name="product">Product to get variants from.</param>
-        public IDictionary<int, string> ExtractVariantsValue<T>(T product);
+        IDictionary<int, string> ExtractVariantsValue<T>(T product);
 
 
         /// <summary>
@@ -18,6 +20,6 @@
         /// </summary>
         /// <typeparam name="T">Type of the product.</typeparam>
         /// <param name="product">Product to get SKU code variants from.</param>
-        public IDictionary<int, string> ExtractVariantsSKUCode<T>(T product);
+        IDictionary<int, string> ExtractVariantsSKUCode<T>(T product);
     }
 }

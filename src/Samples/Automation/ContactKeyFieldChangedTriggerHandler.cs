@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
 using CMS.Automation;
 using CMS.ContactManagement;
 using CMS.DataEngine;
@@ -27,11 +33,17 @@ internal sealed class ContactKeyFieldChangedTriggerHandler :
     /// <summary>
     /// Initializes a new instance of the <see cref="ContactKeyFieldChangedTriggerHandler"/> class.
     /// </summary>
-    public ContactKeyFieldChangedTriggerHandler(IAutomationTriggerDispatcher triggerDispatcher) => this.triggerDispatcher = triggerDispatcher;
+    public ContactKeyFieldChangedTriggerHandler(IAutomationTriggerDispatcher triggerDispatcher)
+    {
+        this.triggerDispatcher = triggerDispatcher;
+    }
 
 
     /// <inheritdoc />
-    public void Handle(InfoObjectBeforeUpdateEvent<ContactInfo> infoObjectEvent) => CaptureChangedFields(infoObjectEvent);
+    public void Handle(InfoObjectBeforeUpdateEvent<ContactInfo> infoObjectEvent)
+    {
+        CaptureChangedFields(infoObjectEvent);
+    }
 
 
     /// <inheritdoc />

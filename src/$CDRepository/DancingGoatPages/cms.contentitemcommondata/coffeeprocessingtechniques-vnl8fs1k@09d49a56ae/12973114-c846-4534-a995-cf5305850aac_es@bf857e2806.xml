@@ -24,7 +24,6 @@
 ]]>
   </ContentItemCommonDataVisualBuilderTemplateConfiguration>
   <ProductFieldCategory />
-  <SEOFieldsAllowSearchIndexing>True</SEOFieldsAllowSearchIndexing>
   <ContentItemReferences>
     <cms.contentitemreference>
       <ContentItemReferenceGroupGUID>04b5735c-f3b6-4dba-af49-1c748e952820</ContentItemReferenceGroupGUID>
