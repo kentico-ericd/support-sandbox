@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<kenticolucene.luceneindexitem>
+  <LuceneIndexItemAnalyzerName>Standard</LuceneIndexItemAnalyzerName>
+  <LuceneIndexItemGuid>561955ab-66e0-4d95-80f7-eb070bcf5855</LuceneIndexItemGuid>
+  <LuceneIndexItemIndexName>Articles</LuceneIndexItemIndexName>
+  <LuceneIndexItemStrategyName>ArticleIndexingStrategy</LuceneIndexItemStrategyName>
+</kenticolucene.luceneindexitem>

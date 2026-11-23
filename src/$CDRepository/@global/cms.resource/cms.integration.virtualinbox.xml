@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cms.resource>
+  <ResourceDescription>Kentico Virtual Inbox custom data</ResourceDescription>
+  <ResourceDisplayName>Kentico Integration - Virtual Inbox</ResourceDisplayName>
+  <ResourceGUID>41f7d17b-ccec-4512-b9bb-bdb97e6f6e32</ResourceGUID>
+  <ResourceIsInDevelopment>False</ResourceIsInDevelopment>
+  <ResourceName>CMS.Integration.VirtualInbox</ResourceName>
+</cms.resource>
